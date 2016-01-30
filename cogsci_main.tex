@@ -1,0 +1,154 @@
+% 
+% Annual Cognitive Science Conference
+% Sample LaTeX Paper -- Proceedings Format
+% 
+
+% Original : Ashwin Ram (ashwin@cc.gatech.edu)       04/01/1994
+% Modified : Johanna Moore (jmoore@cs.pitt.edu)      03/17/1995
+% Modified : David Noelle (noelle@ucsd.edu)          03/15/1996
+% Modified : Pat Langley (langley@cs.stanford.edu)   01/26/1997
+% Latex2e corrections by Ramin Charles Nakisa        01/28/1997 
+% Modified : Tina Eliassi-Rad (eliassi@cs.wisc.edu)  01/31/1998
+% Modified : Trisha Yannuzzi (trisha@ircs.upenn.edu) 12/28/1999 (in process)
+% Modified : Mary Ellen Foster (M.E.Foster@ed.ac.uk) 12/11/2000
+% Modified : Ken Forbus                              01/23/2004
+% Modified : Eli M. Silk (esilk@pitt.edu)            05/24/2005
+% Modified : Niels Taatgen (taatgen@cmu.edu)         10/24/2006
+% Modified : David Noelle (dnoelle@ucmerced.edu)     11/19/2014
+
+%% Change "letterpaper" in the following line to "a4paper" if you must.
+
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage{cogsci}
+\usepackage{pslatex}
+
+
+
+% check for obsolete LaTeX packages and outdated commands
+% don't actually know what will happen
+\RequirePackage[l2tabu, orthodox]{nag} 
+
+% improve the spacing between words and letters
+\usepackage{microtype} % used after fonts
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%% very basics %%%%%%%%%%%%%%%%
+
+\usepackage{amsmath}
+\usepackage{graphicx} % basic facilities
+\usepackage{caption}
+
+\usepackage{subfigure}  % should be updated!!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%% special symbols %%%%%%%%%%%%%%%%
+
+\usepackage{amssymb} % math symbols
+\usepackage{stmaryrd} % logic
+
+%\usepackage{tipa} % IPA symbols
+%\usepackage{OTtablx} % OT Tableaux
+
+%\usepackage{siunitx}  % 
+
+
+%%%%%%%%%%%%%%%% reference-related packages %%%%%%%%%%%%%%%%
+
+% create hyperlinks
+\usepackage{hyperref} 
+\hypersetup{colorlinks=true,citecolor=blue} % no ugly boxes
+
+% apa-style citation
+\usepackage{apacite} % has to be loaded after hyperref
+
+
+% clever reference?? take some time to try this out
+%\usepackage{cleveref}
+
+%% if problems occur, consider comment out the above packages 
+
+% ling examples
+
+%\usepackage[equation]{gb4e-salt}
+%\noautomath
+
+\newcommand{\intp}[1]{\llbracket \text{#1} \rrbracket}
+
+\title{Conversational and conventional aspects of projective content: 
+ A rational speech-act model}
+
+\author{}
+
+%\title{How to Make a Proceedings Paper Submission}
+% 
+%\author{{\large \bf Morton Ann Gernsbacher (MAG@Macc.Wisc.Edu)} \\
+%  Department of Psychology, 1202 W. Johnson Street \\
+%  Madison, WI 53706 USA
+%  \AND {\large \bf Sharon J.~Derry (SDJ@Macc.Wisc.Edu)} \\
+%  Department of Educational Psychology, 1025 W. Johnson Street \\
+%  Madison, WI 53706 USA}
+
+
+\begin{document}
+
+
+
+\maketitle
+ 
+\begin{abstract}
+Certain content of a linguistic construction can project when the construction is embedded in entailment-canceling environments.
+ For example, the conclusion that John smoked in the past from the utterance \emph{John stopped smoking} 
+ still holds for \emph{John didn't stop smoking}, in which the original utterance is 
+ embedded under negation. 
+ There are two main approaches to account for projection phenomena. 
+ The semantic approach adds restrictions of the common ground to the conventional meaning.
+ The pragmatic approach tries to derive projection from general conversational principles. 
+ In this paper, using the rational speech-act theory, we build a probabilistic model in which the listener 
+  jointly infers the world and the common ground from the speaker's perspective. 
+ We take change-of-state verbs as an example and model its projective content under negation. 
+ The model predicts the projective behavior and its interaction with 
+  the \emph{question under discussion} (QUD), under certain assumptions of the 
+  common ground prior and the default QUD for change-of-state verbs.
+
+\textbf{Keywords:} 
+Presupposition; projection; Bayesian pragmatics
+\end{abstract}
+
+\section{Introduction}
+\label{sec:Intro}
+\input{01_intro}
+
+\section{Pragmatic approach to projection}
+\label{sec:Ex}
+\input{02_examples}
+
+\section{A Rational Speech-Act (RSA) model}
+\label{sec:RSA}
+\input{03_RSA}
+
+\section{Question under discussion and projection}
+\label{sec:Discussion}
+\input{04_discussion}
+
+\section{Conclusion and future direction}
+\label{sec:Conclusion}
+\input{05_conclusion}
+
+
+
+
+
+
+\bibliographystyle{apacite}
+
+\setlength{\bibleftmargin}{.125in}
+\setlength{\bibindent}{-\bibleftmargin}
+
+\bibliography{presupposition,bgt_pragmatics}
+
+\end{document}
