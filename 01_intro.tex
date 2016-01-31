@@ -1,52 +1,62 @@
 % Presupposition cogsci 2016
-Natural language gives rise to various kinds of inferences. 
-An important class of such inferences is \emph{entailment}. 
-For example, from the sentence \emph{John danced} we can infer 
- that John moved. 
-When a sentence is embedded under certain operators, such as negation, 
- its entailments may no longer hold. 
-For the previous example, the negation of \emph{John danced}, i.e., 
- \emph{John did not dance}, no longer entails that John moved.
-This illustrates the well-known fact that negation is an
- \emph{entailment-canceling} operator.
 
-However, certain inferences seem to be able to survive entailment-canceling operators.
-For instance, think of a scenario in which Alice and Bob are talking about John, 
- an old friend of Alice's who is visiting her. 
-Bob has never met John before so he knows nothing about him. 
-Bob asks Alice, ``Does John smoke?'' 
-Alice replies, ``John stopped smoking.'' 
-At this point, what Bob infers about John from Alice's statement is twofold: 
- (i) that John does not smoke now, and (ii) that John smoked in the past.%
-\footnote{Alice's answer has another reading, which is about a particular smoking event 
- (e.g., John lit up a cigarette and finished it).
-We only discuss the habitual reading in this paper but our proposed analysis can be similarly 
- applied to the event reading.}
- 
-Both (i) and (ii) are highly plausible inferences and are arguably entailments of
- the sentence ``John stopped smoking.''
-But what happens when this sentence is embedded under negation? 
-That is, imagine another scenario which is identical to the previous one except that 
- Alice's reply is ``John did not stop smoking.'' 
-What would Bob infer in this case?
-Intuitively, it seems that Bob would infer (i$'$) that John smokes now, 
- and (ii$'$) that John smoked in the past.
- 
-Inferences (i) and (i$'$) are opposite.
-This is expected, since negation is an entailment-canceling operator.
-However, (ii) and (ii$'$) are exactly the same.
-This is surprising and puzzling: given that negation is entailment-canceling, 
- why and how does inference (ii) survive?
- 
-In natural language semantics and pragmatics, inference (ii) is called the
- \emph{projective content} under negation of the sentence ``John stopped smoking.'' 
-Our scenario is an example showing that a change-of-state verb has 
- the information about the past as its projective content under negation. 
+
+\begin{quotation}
+``When did you stop beating your wife?'' ---comedian
+\end{quotation}
+
+From \emph{John danced} we can infer \emph{John moved}, but we cannot infer this from \emph{John didn't dance}---the inference that \emph{John moved} is canceled by negation.
+In contrast, from both \emph{John stopped smoking} and \emph{John didn't stop smoking} we are likely to infer that \emph{John used to smoke}---this inference is said to \emph{project} outside negation.
+In natural language semantics and pragmatics, an inference that survives an operator that usually cancels inferences is called
+ \emph{projective content} of the sentence under that operator. 
+Change-of-state verbs can have information about the past as projective content under negation: \emph{John used to smoke} is projective content under negation of ``John stopped smoking.'' 
 There are many other types of projective contents 
  (e.g., the complement of \emph{know}) under different operators 
- (e.g., questions modals) identified and discussed in the literature. 
-And the problem of explaining how certain inferences such as (ii) can
+ (e.g., questions, modals) identified and discussed in the literature. 
+The problem of explaining how certain inferences can
  survive entailment-canceling operators is called the \emph{projection problem}.
+
+
+
+%Natural language gives rise to various kinds of inferences. 
+%One important class of such inferences is \emph{entailment}. 
+%For example, from the sentence \emph{John danced} we can infer 
+% that John moved. 
+%When a sentence is embedded under certain operators, such as negation, 
+% its entailments may no longer hold. 
+%For the previous example, the negation of \emph{John danced}, i.e., 
+% \emph{John did not dance}, no longer entails that John moved.
+%This illustrates the well-known fact that negation is an
+% \emph{entailment-canceling} operator.
+
+%However, certain inferences seem to be able to survive entailment-canceling operators.
+%For instance, think of a scenario in which Alice and Bob are talking about John, 
+% an old friend of Alice's who is visiting her. 
+%Bob has never met John before so he knows nothing about him. 
+%Bob asks Alice, ``Does John smoke?'' 
+%Alice replies, ``John stopped smoking.'' 
+%At this point, what Bob infers about John from Alice's statement is twofold: 
+% (i) that John does not smoke now, and (ii) that John smoked in the past.%
+%\footnote{Alice's answer has another reading, which is about a particular smoking event 
+% (e.g., John lit up a cigarette and finished it).
+%We only discuss the habitual reading in this paper but our proposed analysis can be similarly 
+% applied to the event reading.}
+% 
+%Both (i) and (ii) are highly plausible inferences and are arguably entailments of
+% the sentence ``John stopped smoking.''
+%But what happens when this sentence is embedded under negation? 
+%That is, imagine another scenario which is identical to the previous one except that 
+% Alice's reply is ``John did not stop smoking.'' 
+%What would Bob infer in this case?
+%Intuitively, it seems that Bob would infer (i$'$) that John smokes now, 
+% and (ii$'$) that John smoked in the past.
+% 
+%Inferences (i) and (i$'$) are opposite.
+%This is expected, since negation is an entailment-canceling operator.
+%However, (ii) and (ii$'$) are exactly the same.
+%This is surprising and puzzling: given that negation is entailment-canceling, 
+% why and how does inference (ii) survive?
+ 
 
 There are two main approaches to the projection problem.
 According to the \emph{semantic} approach, projective contents are conventional properties of
@@ -54,18 +64,18 @@ According to the \emph{semantic} approach, projective contents are conventional 
 According to the \emph{pragmatic} approach, projection can be
  derived from general conversational principles 
  \cite<e.g.,>{Stalnaker1974:Pragmatic-Presuppositions,Simons2001:On-the-Conversational,simons2006foundational}. 
- 
-In this paper, based on previous ideas of the pragmatic approach, we propose 
- an extension to Rational Speech-Act (RSA) model
+In this paper, we build on and formalize previous ideas of the pragmatic approach.
+We extend the probabilistic Rational Speech Act (RSA) model
  \cite{FrankGoodman2012:Predicting-Pragmatic-Reasoning-,GoodmanStuhlmuller2013:Knowledge-and-I} to account for the projection phenomena of change-of-state verbs 
  under negation.
+ \ndg{need to say a bit more about the model: why and what are the basic ideas?}
 The model correctly predicts the projective behavior in our example scenario. 
 And it further predicts an interaction between projective behavior and the  
  \emph{question under discussion} (QUD) \cite{Roberts2012:Information-Structure} for change-of-state verbs under negation.
 
-The rest of the paper is as follows. We first briefly review the basic ideas of 
- the pragmatic approach to projection. Next, we introduce an extension to the 
- standard RSA model incrementally, pointing out each additional assumption needed and the motivation.
-Finally we further discuss the full model's predictions and implications and suggest future directions.
+The rest of the paper is as follows. We first briefly review the basic ideas of the pragmatic approach to projection. 
+Next, we describe a sequence of extensions to the standard RSA model that ultimately predict the correct pattern of projection. 
+%pointing out each additional assumption needed and the motivation.
+Finally we discuss the full model's predictions, implications and possible future directions.
 
 
