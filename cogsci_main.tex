@@ -194,27 +194,19 @@ According to the \emph{pragmatic} approach, projection can be
 %``John did not stop smoking,'' is technically true even if John has never smoked. 
 %Then how can Bob infer that John smoked in the past when Alice uses it in reply to his question whether John smokes?
 %We will sketch the intuitive ideas here, and formalize them with a probabilistic model in the next section. 
-The reasoning for the \emph{smoking} example goes roughly as follows. 
-\ndg{fix}
-We'll call the speaker Alice and the listener Bob.
-Taken literally, Alice's utterance seems under-informative because whether or not
- John smokes is compatible with what she said.
-However, given that she is assumed to know whether John smokes, be cooperative, and
- be able to directly address the question under discussion, 
- she should not have said something under-informative such as ``John did not stop smoking.''
-But she did. 
-So perhaps her answer is informative after all.
-But how?
+To illustrate the reasoning, let us expand the example scenario:
+Alice and Bob are talking about John, an old friend of Alice's who is visiting her. 
+Bob has never met John before so he knows nothing about him. 
+Bob asks Alice, ``Does John smoke?'' 
+Alice replies, ``John did not stopped smoking.'' 
+Taken literally, Alice's utterance seems under-informative: whether or not John smokes is compatible with what she said.
+If Alice knows whether John smokes, is cooperative, and is able to directly address the question, she would not have said something under-informative.
+So perhaps her answer is informative after all, but how?
 Maybe she has taken some additional information for granted, assuming that it is in 
- the \emph{common ground} between the speaker and the listener.
-What might that information be?
-Well, if Alice took for granted that John smoked in the past, then, 
-  together with ``John did not stop smoking,'' this information would mean that 
- John still smokes, which fully answers the QUD whether John smokes now.
-In other words, assuming that Alice took for granted that John smoked in the past 
- helps best explain Alice's choice of her utterance. 
-Therefore, Bob the listener would infer that John smoked in the past, which is why 
- this information survives under negation.
+ the \emph{common ground} with Bob.
+Indeed, if Alice took for granted that John smoked in the past, then, together with ``John did not stop smoking,'' this information would mean that John still smokes, which fully answers the question of whether John smokes now.
+In other words, assuming that Alice took for granted that John smoked in the past best explains how Alice could be cooperative and still choose this utterance.
+If Bob further assumes that if Alice took it for granted then it must be true, then he will arrive at the projected content: John used to smoke.
  
  
   There are many reasons why one might prefer such a pragmatic approach to projection to a 
@@ -232,20 +224,17 @@ Third, projection is sensitive to focus: ``John did not \emph{stop} smoking.'' s
 Yet a major obstacle to adopting the pragmatic approach has been the difficulty in formalizing the reasoning and showing that it emerges naturally from conversational principles.
  
 In this paper, we build on and formalize previous ideas of the pragmatic approach.
-We extend the probabilistic Rational Speech-Acts (RSA) model
- \cite{FrankGoodman2012:Predicting-Pragmatic-Reasoning-,GoodmanStuhlmuller2013:Knowledge-and-I} to account for the projection phenomena of change-of-state verbs 
- under negation.
- \ndg{need to say a bit more about the model: why and what are the basic ideas?}
-The model correctly predicts the projective behavior in our example scenario. 
-And it further predicts an interaction between projective behavior and the  
- \emph{question under discussion} (QUD) \cite{Roberts2012:Information-Structure} for change-of-state verbs under negation.
+We do so within the Rational Speech-Acts (RSA) framework  \cite{FrankGoodman2012:Predicting-Pragmatic-Reasoning-,GoodmanStuhlmuller2013:Knowledge-and-I}: a Bayesian 
+approach to language understanding.
+We extend the previous models by allowing the listener to reason about the facts that the speaker took to be in common ground (along similar lines to \cite{degen2015}).
+We find that to account for the example scenario we must also make certain assumptions about which facts are plausible common ground and which question is under discussion.
+With these assumptions and extensions, the model correctly accounts for projection phenomena of change-of-state verbs under negation.
+It further predicts an interaction between projective behavior and the  
+ \emph{question under discussion} (QUD) \cite{Roberts2012:Information-Structure}, suggesting an avenue for experimental research.
 
-\ndg{somewhere we need to cite / discuss Degen, Tessler, Goodman 2015}
-
-The rest of the paper is as follows. We first briefly review the basic ideas of the pragmatic approach to projection. 
-Next, we describe a sequence of extensions to the standard RSA model that ultimately predict the correct pattern of projection. 
-%pointing out each additional assumption needed and the motivation.
-Finally we discuss the full model's predictions, implications, and possible future directions.
+%The rest of the paper is as follows. We describe a sequence of extensions to the standard RSA model that ultimately predict the correct pattern of projection. 
+%%pointing out each additional assumption needed and the motivation.
+%Finally we discuss the full model's predictions, implications, and possible future directions.
 
 
 \section{A Rational Speech-Act (RSA) model}
