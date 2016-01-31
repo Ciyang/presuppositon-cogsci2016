@@ -87,7 +87,7 @@
 \title{A rational speech-act model of projective content}
 %Conversational and conventional aspects of projective content: A rational speech-act model}
 
-\author{{\large \bf Ciyang}, {\large \bf Dan}, and {\large \bf Noah D.~Goodman}\\
+\author{{\large \bf Ciyang Qing}, {\large \bf Noah D.~Goodman}, {\large \bf Daniel Lassiter}\\
 Stanford University} 
 
 %\title{How to Make a Proceedings Paper Submission}
@@ -190,51 +190,13 @@ According to the \emph{semantic} approach, projective contents are conventional 
 According to the \emph{pragmatic} approach, projection can be
  derived from general conversational principles 
  \cite<e.g.,>{Stalnaker1974:Pragmatic-Presuppositions,Simons2001:On-the-Conversational,simons2006foundational}. 
-In this paper, we build on and formalize previous ideas of the pragmatic approach.
-We extend the probabilistic Rational Speech Act (RSA) model
- \cite{FrankGoodman2012:Predicting-Pragmatic-Reasoning-,GoodmanStuhlmuller2013:Knowledge-and-I} to account for the projection phenomena of change-of-state verbs 
- under negation.
- \ndg{need to say a bit more about the model: why and what are the basic ideas?}
-The model correctly predicts the projective behavior in our example scenario. 
-And it further predicts an interaction between projective behavior and the  
- \emph{question under discussion} (QUD) \cite{Roberts2012:Information-Structure} for change-of-state verbs under negation.
-
-\ndg{somewhere we need to cite / discuss Degen, Tessler, Goodman 2015}
-
-The rest of the paper is as follows. We first briefly review the basic ideas of the pragmatic approach to projection. 
-Next, we describe a sequence of extensions to the standard RSA model that ultimately predict the correct pattern of projection. 
-%pointing out each additional assumption needed and the motivation.
-Finally we discuss the full model's predictions, implications, and possible future directions.
-
-
-
-\section{The pragmatic approach to projection}
-\label{sec:Ex}
-%\input{02_examples}
-%In this section, we will briefly review the main ideas and motivations of the
-% pragmatic approach to projection.
-
-There are many reasons why one might prefer a pragmatic approach to a 
- semantic one. 
-First, change-of-state verbs systematically show projective behavior. 
-Therefore, a generalization would be missing if their projective contents are
- lexically-encoded properties unrelated to each other.
-Second, projection interacts with the contextual question under discussion,
- as can be seen from the following example \cite{Geurts1995:Presupposing}.
-Imagine that Bob asked Alice: ``I notice that John keeps chewing on his pencil. Did he recently stop smoking?''
-In this context Bob is interested in whether there was a change from smoking to non-smoking, rather than simply whether John is currently a smoker. 
-As a result, he would not infer from an answer of ``no (it's just his habbit)'' that 
- John smoked in the past. 
-Third, projection is sensitive to focus.
-
-Such evidence suggests that projection is probably not purely semantic, but how do we 
- capture it using general conversational principles?
-For example, when Alice says ``John did not stop smoking,'' technically it is true 
- even if John has never smoked. 
-Then how can Bob infer that John smoked in the past when Alice uses it in reply to his question whether John smokes?
-
-We will sketch the intuitive ideas here, and formalize them with a probabilistic model in the next section. 
-Bob's reasoning goes roughly as follows. 
+ How could we capture projection patterns using general conversational principles?
+%``John did not stop smoking,'' is technically true even if John has never smoked. 
+%Then how can Bob infer that John smoked in the past when Alice uses it in reply to his question whether John smokes?
+%We will sketch the intuitive ideas here, and formalize them with a probabilistic model in the next section. 
+The reasoning for the \emph{smoking} example goes roughly as follows. 
+\ndg{fix}
+We'll call the speaker Alice and the listener Bob.
 Taken literally, Alice's utterance seems under-informative because whether or not
  John smokes is compatible with what she said.
 However, given that she is assumed to know whether John smokes, be cooperative, and
@@ -255,6 +217,36 @@ Therefore, Bob the listener would infer that John smoked in the past, which is w
  this information survives under negation.
  
  
+  There are many reasons why one might prefer such a pragmatic approach to projection to a 
+ semantic one. 
+First, change-of-state verbs systematically show projective behavior. 
+Therefore, a generalization would be missing if their projective contents are
+ lexically-encoded properties unrelated to each other.
+Second, projection interacts with the contextual question under discussion,
+ as can be seen from the following example \cite{Geurts1995:Presupposing}.
+Imagine that Bob asked Alice: ``I notice that John keeps chewing on his pencil. Did he recently stop smoking?''
+In this context Bob is interested in whether there was a change from smoking to non-smoking, rather than simply whether John is currently a smoker. 
+As a result, he would not infer from an answer of ``no (it's just his habbit)'' that 
+ John smoked in the past. 
+Third, projection is sensitive to focus: ``John did not \emph{stop} smoking.'' seems to suggest he never smoked.
+Yet a major obstacle to adopting the pragmatic approach has been the difficulty in formalizing the reasoning and showing that it emerges naturally from conversational principles.
+ 
+In this paper, we build on and formalize previous ideas of the pragmatic approach.
+We extend the probabilistic Rational Speech-Acts (RSA) model
+ \cite{FrankGoodman2012:Predicting-Pragmatic-Reasoning-,GoodmanStuhlmuller2013:Knowledge-and-I} to account for the projection phenomena of change-of-state verbs 
+ under negation.
+ \ndg{need to say a bit more about the model: why and what are the basic ideas?}
+The model correctly predicts the projective behavior in our example scenario. 
+And it further predicts an interaction between projective behavior and the  
+ \emph{question under discussion} (QUD) \cite{Roberts2012:Information-Structure} for change-of-state verbs under negation.
+
+\ndg{somewhere we need to cite / discuss Degen, Tessler, Goodman 2015}
+
+The rest of the paper is as follows. We first briefly review the basic ideas of the pragmatic approach to projection. 
+Next, we describe a sequence of extensions to the standard RSA model that ultimately predict the correct pattern of projection. 
+%pointing out each additional assumption needed and the motivation.
+Finally we discuss the full model's predictions, implications, and possible future directions.
+
 
 \section{A Rational Speech-Act (RSA) model}
 \label{sec:RSA}
