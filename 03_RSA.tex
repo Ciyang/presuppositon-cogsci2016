@@ -85,6 +85,12 @@ In this paper we always assume that all worlds are equally likely \emph{a priori
 L_0(Q(w) \mid u, Q) = \Pr(Q(w) \mid w \in \intp{u}) \label{eq:literal-noCG}
 \end{equation}
  
+ \ndg{this notation isn't the best: the distribution over Q(w) isn't fully defined and the impact of literal meaning is better specified by a delta function.
+ it's cleaner to handle the QUD in the speaker.i'd do it like: 
+ $P_{L_0}(w \mid u) \propto \delta_{w\in \intp{u}}$ 
+ and $P_{S}(u\mid w,Q) \propto P(u)\sum_{Q(w)=Q(w')}P_{L_0}(w' \mid u)$.
+ i'm not going to make this change, since it affects a lot. y'all can if you want, or we can do it in the post-submit revision...}
+ 
 \begin{table*}
 \centering
 \begin{tabular}{c|c|c|c|c}
