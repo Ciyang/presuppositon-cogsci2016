@@ -237,7 +237,7 @@ Finally, given an utterance and the QUD, the pragmatic listener now jointly infe
 L(w, C \mid u, Q) \propto \Pr(w) \cdot \Pr(C) \cdot S(u \mid w, C, Q)
 \end{equation}
 
-In order for the model to work, we need to specify a prior distribution $\Pr(C)$ 
+We need to specify a prior distribution $\Pr(C)$ 
  over context sets.
 We consider two possibilities. 
 First, we consider a uniform distribution over all context sets, i.e., 
@@ -333,6 +333,9 @@ In other words, the prior of a context set $C$ is defined in (\ref{eq:CGprior})
 \Pr(C)=0.95\cdot\Pr(C=\cap\text{CG}_\text{Obs})+0.05\cdot 1/15 \label{eq:CGprior}
 \end{equation}
 
+\ndg{i think this exposition is the right idea. (though i wonder how useful it is to have both context and CG? i like context sets...) the exposition it could be crystalized just a bit by being clearer that: the things that are likely to be in common ground are the knowledge states it is likely for the speaker to have; knowledge usually follows from observations; in our domain likely observations are observations at each time. this in particular leads to disjunctive knowledge states being unlikely.
+also, the notation $Pr(C=\cap\text{CG}_\text{Obs})$ doesn't really specify very well: $P_S(C|obs) \propto \delta_{C\in obs} P(C)$ by Bayes rule...?}
+
 Using the above notion of a common ground to derive the prior over context sets
  (summarized in the third column of Table~\ref{tab:models}), the pragmatic
  listener's marginal distribution over worlds is shown in Figure~\ref{fig:RSA_CGprior}.
@@ -379,6 +382,7 @@ This is not desirable, but is totally expected from the model:
 Therefore, to fully capture projective behavior, we need to further
  explain why $(F, F)$ with context set \verb=-now= is dispreferred.
 
+\ndg{last three paragraphs are kind of wordy.... compress partly while clarifying as requested above?}
 
 \ 
 
