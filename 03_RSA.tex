@@ -8,9 +8,9 @@ We will continue to use our working example of the conversation between Alice an
  regarding John's smoking habit.
 
 We consider the following relevant utterances: ``John smokes,'' 
- ``John smoked,'' ``John always smokes,''
+ ``John smoked,'' ``John has always smoked,''
  ``John stopped smoking,'' ``John started smoking,'' 
- ``John never smokes,'' and their negations. 
+ ``John has never smoked,'' and their negations. 
 In addition, we introduce the null utterance ``'' (say nothing).
 The prior probability of an utterance depends on the number of content words 
  (i.e., negation and auxiliaries are excluded) that it has.
@@ -27,7 +27,7 @@ We define a world $w$ as a pair.
 Its first element is whether John smoked in the past 
  and its second element is whether John smokes now. 
 This gives us a set of four possible worlds (the \emph{universe} 
- $U=\{$(\verb+#t+, \verb+#t+), (\verb+#t+, \verb+#f+), (\verb+#f+, \verb+#t+), (\verb+#f+, \verb+#f+)$\}$).
+ $U=\{(T, T), (T, F), (F, T), (F, F)\}$).
 All positive utterances and their denotations are listed in Table~\ref{tab:pos-utt-denotations}.
 In addition, we define that saying nothing is always true, and that the denotation 
  of the negation of an utterance $u$ is $U-\intp{$u$}$.
@@ -40,22 +40,23 @@ In addition, we define that saying nothing is always true, and that the denotati
 \begin{table}
 \centering
 \begin{tabular}{cc}
-$u$ &  $\intp{$u$}$ \\ \hline
-``John smokes''  & $\{(\verb+#t+, \verb+#t+), (\verb+#f+, \verb+#t+)\}$ \\ 
-``John smoked'' & $\{(\verb+#t+, \verb+#t+), (\verb+#t+, \verb+#f+)\}$ \\ 
-``John always smokes'' & $\{(\verb+#t+, \verb+#t+)\}$ \\
-``John stopped smoking'' & $\{(\verb+#t+, \verb+#f+)\}$ \\
-``John started smoking'' & $\{(\verb+#f+, \verb+#t+)\}$ \\
-``John never smokes'' & $\{(\verb+#f+, \verb+#f+)\}$ 
+$u$ &  $\intp{$u$}$  \\ \hline
+``John smokes''  & $\{(T, T), (F, T)\}$ \\ 
+``John smoked'' & $\{(T, T), (T, F)\}$ \\ 
+``John has always smoked'' & $\{(T, T)\}$ \\
+``John stopped smoking'' & $\{(T, F)\}$ \\
+``John started smoking'' & $\{(F, T)\}$ \\
+``John has never smoked'' & $\{(F, F)\}$ 
 \end{tabular}
 \caption{Positive utterances and their denotations \label{tab:pos-utt-denotations}}
 \end{table}
 
 
-A \emph{Question Under Discussion} (QUD) \cite{Roberts2012:Information-Structure} is a function $Q$ that takes a possible world as 
+A \emph{Question Under Discussion} (QUD) is a function $Q$ that takes a possible world as 
  its argument and returns the answer to the question in this world.
-For example, QUD$_\textrm{now}$ is the question ``Does John smoke now?'' which takes a world and returns its second element.
-It answers whether John smokes now. 
+For example, QUD$_\textrm{now}$ is the question ``Does John smoke now?'' 
+It takes a world and returns its second element, which answers whether 
+ John smokes now. 
 Another example is the maximal QUD$_\textrm{max}$, which is the identity function. 
 Intuitively, QUD$_\textrm{max}$ is asking which is the current world.
 It is maximal in the sense that knowing its answer means knowing the answer to 
@@ -92,7 +93,7 @@ literal  & $L_0(Q(w) \mid u, Q) = \Pr(Q(w) \mid w \in \intp{u})$ &
 \multicolumn{3}{c}{$L_0(Q(w) \mid u, C, Q) = \Pr(Q(w) \mid w \in \intp{u} \cap C)$} \\
 speaker  & $S(u | w, Q) \propto \Pr(u) \cdot L_0(Q(w) \mid u, Q)^\alpha $ & \multicolumn{3}{c}{$S(u | w, C, Q) \propto \Pr(u) \cdot L_0(Q(w) \mid u, C, Q)^\alpha$} \\
 listener & $L(w \mid u, Q) \propto \Pr(w) \cdot S(u \mid w, Q)$ & \multicolumn{3}{c}{$L(w, C \mid u, Q) \propto \Pr(w) \cdot \Pr(C) \cdot S(u \mid w, C, Q)$} \\
-CG prior & -- & $\Pr(C) \propto 1$ & \multicolumn{2}{c}{$\Pr(C)=0.95\cdot\Pr(\text{Obs}=C)+0.05\cdot 1/15$} \\
+CG prior & -- & $\Pr(C) \propto 1$ & \multicolumn{2}{c}{$\Pr(C)=0.95\cdot\Pr(C=\cap\text{CG}_\text{Obs})+0.05\cdot 1/15$} \\
 QUD      & $\text{QUD}_\text{max}(w)=w$ & $\text{QUD}_\text{max}(w)=w$ & $\text{QUD}_\text{max}(w)=w$ & $\text{QUD}_\text{now}((x,y))=y$\\
 %QUD      & \multicolumn{3}{c}{$\text{QUD}_\text{max}(w)=w$} & $\text{QUD}_\text{now}((x,y))=y$\\
 \hline
@@ -116,7 +117,7 @@ QUD      & $\text{QUD}_\text{max}(w)=w$ & $\text{QUD}_\text{max}(w)=w$ & $\text{
 
 For example, given QUD$_\textrm{max}$, after hearing
  ``John did not stop smoking,'' the literal listener will rule out world
- (\verb+#t+, \verb+#f+), and returns the remaining 3 worlds with equal probability.
+ $(T, F)$, and returns the remaining 3 worlds with equal probability.
 
 
 Given the actual world and the QUD, the probability of 
@@ -151,13 +152,13 @@ As we can see, the standard RSA model predicts a uniform distribution over the
  that John smoked in the past.
 
 The reason for this failure is that ``John did not stop smoking'' is equally
- underinformative in any of the three worlds compatible with its literal meaning.
-For example, suppose the actual world is $(\verb+#t+, \verb+#t+)$, since the 
+ under-informative in any of the three worlds compatible with its literal meaning.
+For example, suppose the actual world is $(T, T)$, since the 
  literal listener will return this world with probability only $1/3$ after hearing ``John did not stop smoking,'' the speaker is unlikely to choose this utterance.
-She is more likely to say ``John always smokes'' instead, which will always induce 
- the correct answer. 
-The same holds for the other two worlds $(\verb+#f+, \verb+#t+)$ and $(\verb+#f+,
- \verb+#f+)$ and therefore the pragmatic listener in the standard RSA model will 
+She is more likely to say ``John has always smoked'' instead, which will always
+ induce the correct answer. 
+The same holds for the other two worlds $(F, T)$ and $(F,
+ F)$ and therefore the pragmatic listener in the standard RSA model will 
  infer that the three worlds are equally likely.
  
 \ 
@@ -174,28 +175,28 @@ The same holds for the other two worlds $(\verb+#f+, \verb+#t+)$ and $(\verb+#f+
 % \hspace{5pt}
 %  \subfigure[CG prior + QUD$_\text{now}$]{\label{fig:joint-QUDnow}
 %  \includegraphics[scale=0.26]{figs/alpha6CGprior_QUDnow.png}}%alpha6cost1eqllhcg
- \caption{Pragmatic listener after hearing ``John did not stop smoking,'' with $\alpha=6$ }
+ \caption{Pragmatic listener after hearing ``John did not stop smoking,'' with $\alpha=6$\label{fig:prior}}
 \end{figure*}
 
 We have seen that one important reason that the standard RSA model fails to 
  capture the projective content of ``John stopped smoking'' is that its literal
- meaning is underinformative when the entire universe $U$ is considered.
+ meaning is under-informative when considered in the entire universe $U$.
 However, as discussed before, there can be information taken for granted by the
- speaker and the listener, i.e., the common ground. 
-And an utterance underinformative when considered in the entire universe $U$ may 
+ speaker and the listener, i.e., the common ground, 
+and an utterance under-informative when considered in the entire universe $U$ may 
  nevertheless be informative when evaluated in the common ground.
-To make use of this observation, we now add common ground to the RSA model.
+To formalize this observation, we now add common ground to the RSA model.
 
 We first define a related notion. 
 A \emph{context set} \cite{Stalnaker1974:Pragmatic-Presuppositions} $C$ is a non-empty subset of the universe.
 Since we have 4 possible worlds, there are $2^4-1=15$ different context sets.
 These context sets are intuitively named. 
 For example, \verb=+past= is the context set
- that contains $(\verb+#t+, \verb+#t+)$ and $(\verb+#t+, \verb+#f+)$,
-\verb=+past+now= contains only $(\verb+#t+, \verb+#t+)$,
-\verb=~+past+now= contains all the worlds except $(\verb+#t+, \verb+#t+)$, 
-\verb=change= is the context set that contains $(\verb+#t+, \verb+#f+)$ 
- and $(\verb+#f+, \verb+#t+)$.
+ that contains $(T, T)$ and $(T, F)$,
+\verb=+past+now= contains only $(T, T)$,
+$\sim$\verb=+past+now= contains all the worlds except $(T, T)$, 
+and \verb=change= is the context set that contains $(T, F)$ 
+ and $(F, T)$.
 
 A literal listener, given an utterance, the current context set and QUD, 
  randomly samples a world that is consistent with both the utterance and 
@@ -208,12 +209,12 @@ L_0(Q(w) \mid u, C, Q) = \Pr(Q(w) \mid w \in \intp{u} \cap C) \label{eq:literal-
 
 For example, given context set \verb=+past= and QUD$_\text{max}$, 
  after hearing ``John stopped smoking,'' the literal listener will rule out 
- $(\verb+#t+, \verb+#f+)$ because of the utterance's literal meaning, and 
- $(\verb+#f+, \verb+#t+)$ and $(\verb+#f+, \verb+#f+)$ because 
+ $(T, F)$ because of the utterance's literal meaning, and 
+ $(F, T)$ and $(F, F)$ because 
  they are incompatible with the context set.
-Therefore he will always return $(\verb+#t+, \verb+#t+)$.
-We can see from this example that an utterance that is underinformative 
- when the entire universe is considered can be maximally informative in certain 
+Therefore he will always return $(T, T)$.
+We can see from this example that an utterance that is under-informative 
+ when the entire universe is considered can be informative in some other 
  context sets.
 
 The new speaker model is almost the same as (\ref{eq:speaker-noCG}), except that 
@@ -238,9 +239,10 @@ First, we consider a uniform distribution over all context sets, i.e.,
 Assuming the maximal QUD, the model is summarized in the second column of 
  Table~\ref{tab:models} and the pragmatic listener's marginal distribution over 
  worlds is shown in Figure~\ref{fig:RSA_uniformCG}.
-We can see that this model predicts that $(\verb+#f+, \verb+#t+)$ is slightly 
- less likely than $(\verb+#t+, \verb+#t+)$ and $(\verb+#f+, \verb+#f+)$, 
- and $(\verb+#t+, \verb+#t+)$ has the same probability as $(\verb+#f+, \verb+#f+)$.
+We can see that this model predicts that $(F, T)$ is slightly 
+ less likely than $(T, T)$ and $(F, F)$, 
+ and $(T, T)$ has the same probability as $(F, F)$. 
+This does not capture projection.
 
 
 % explanation of why a uniform prior is undesirable
@@ -252,7 +254,7 @@ We can see that this model predicts that $(\verb+#f+, \verb+#t+)$ is slightly
 %Instead of only looking at the marginal distribution over worlds, we plot the joint
 % distribution of world and common ground in Figure~\ref{fig:joint-uniformCG}.
 %
-%First, we see that the world $(\verb+#t+, \verb+#t+)$ with common ground 
+%First, we see that the world $(T, T)$ with common ground 
 % \verb=+past= is one of the two most likely outcomes. 
 %This outcome means that John always smokes and that the speaker takes for 
 % granted that John smoked in the past.
@@ -269,7 +271,7 @@ We can see that this model predicts that $(\verb+#f+, \verb+#t+)$ is slightly
 % 
 %However, this cannot be the full story to account for projection, 
 % because we can see from Figure~\ref{fig:joint-uniformCG} that 
-% the world $(\verb+#f+, \verb+#f+)$ with common ground \verb=-now= is the other most likely outcome, and the world $(\verb+#f+, \verb+#t+)$ with common ground
+% the world $(F, F)$ with common ground \verb=-now= is the other most likely outcome, and the world $(F, T)$ with common ground
 % \verb=change= is the next most likely outcome.
 %The former outcome means that John never smokes and that the speaker takes for
 % granted that John does not smoke now.
@@ -277,9 +279,9 @@ We can see that this model predicts that $(\verb+#f+, \verb+#t+)$ is slightly
 %The reason why these two outcomes are likely is exactly the same as before: the 
 % utterance ``John did not stop smoking'' is also maximally informative in these common grounds. 
 %For example, when the common ground is \verb=-now=, i.e., the actual world is 
-% either $(\verb+#t+, \verb+#f+)$ or $(\verb+#f+, \verb+#f+)$, the literal listener 
-% will rule out $(\verb+#t+, \verb+#f+)$ after hearing ``John did not stop smoking''
-% and therefore will always return $(\verb+#f+, \verb+#f+)$.
+% either $(T, F)$ or $(F, F)$, the literal listener 
+% will rule out $(T, F)$ after hearing ``John did not stop smoking''
+% and therefore will always return $(F, F)$.
 %
 % 
 %
@@ -289,14 +291,14 @@ We can see that this model predicts that $(\verb+#f+, \verb+#t+)$ is slightly
 % overgenerates possible projection patterns and predicts that the pragmatic listener thinks that they are roughly equally likely.
 %This contradicts the empirical fact that people have a strong preference for only
 % one of the projective patterns, and hence the model needs further revision 
-% in order to explain why only $(\verb+#t+, \verb+#t+)$ with common ground 
+% in order to explain why only $(T, T)$ with common ground 
 %  \verb=+past= is preferred.
 %
 %
 %
 %Below, we will make two modifications. The first accounts for why 
-% $(\verb+#f+, \verb+#t+)$ with common ground \verb=change= is dispreferred
-% and the second for $(\verb+#f+, \verb+#f+)$ with common ground \verb=-now=.
+% $(F, T)$ with common ground \verb=change= is dispreferred
+% and the second for $(F, F)$ with common ground \verb=-now=.
  
 
 %\noindent\textbf{Common ground prior}
@@ -304,56 +306,72 @@ We can see that this model predicts that $(\verb+#f+, \verb+#t+)$ is slightly
 The second possibility makes use of the notion of a \emph{common ground} (CG) 
  in the pragmatic approach to derive a prior over context sets
  \cite{Stalnaker1974:Pragmatic-Presuppositions}.
-As previously discussed, intuitively a common ground represents the information 
- taken for granted by the speaker and the listener.
-Technically, a common ground is a set of propositions (propositions are sets of
-  worlds) and the context set is the intersection of all the propositions in the common ground.
+As previously discussed, intuitively a common ground represents all pieces of
+ information taken for granted by the speaker and the listener.
+Technically, a common ground is a set of propositions (a proposition is a set of
+  worlds) that are taken for granted and the context set is the intersection of all the propositions in the common ground.
 In our example scenario, the relevant information that Alice (the speaker) has 
- and can take for granted is her knowledge about John's smoking status in the 
- past or now, most typically obtained from her direct observation.
-Therefore, we assume that there are two observations, about John's past and current
+ and can take for granted is typically the results of her observations about John's smoking status in the past and now.
+Formally, we assume that there are two observations, about John's past and current
  smoking status, respectively. 
-The result of each observation is independently $40\%$ likely to be taken for
- granted ($40\%$ reflects the assumption that people are more likely not to take these results for granted) and enter the common ground.
-The common ground generally ($95\%$) consists of only observation results,
- but very occasionally ($5\%$) it contains random information to gloss over
- non-typical information common ground.
+The result of each observation is independently likely to be in the common ground
+ with probability $p$ (in this paper we set $p=40\%$, assuming that people 
+ generally tend not to take information for granted).
+The context set is generally ($95\%$) the intersection of such a common ground
+ consisting of (some or no) observations,
+ but very occasionally ($5\%$) it is uniformly chosen from all 15 possible context 
+ sets to gloss over other ways to form a common ground.
 In other words, the prior of a context set $C$ is defined in (\ref{eq:CGprior})
 
 \begin{equation}
-\Pr(C) = \Pr(C=\cap\text{CG}) \label{eq:CGprior}
+\Pr(C)=0.95\cdot\Pr(C=\cap\text{CG}_\text{Obs})+0.05\cdot 1/15 \label{eq:CGprior}
 \end{equation}
 
-
-
-Using the RSA model with common ground introduced before, 
- but with the above common ground prior instead of a uniform distribution 
+Using the above notion of a common ground to derive the prior over context sets
  (summarized in the third column of Table~\ref{tab:models}), the pragmatic
- listener's marginal distribution over worlds is shown in Figure~\ref{fig:RSA_CGprior} and the joint distribution of world and
-  common ground is in Figure~\ref{fig:joint-CGprior}. 
-We can see that the world $(\verb+#f+, \verb+#t+)$ with common ground
- $(\verb+#f+, \verb+#t+)$ with common ground \verb=change= is no longer a likely outcome,
- and the marginal probability of world $(\verb+#f+, \verb+#t+)$ greatly decreases.
-This means that the new model correctly predicts that $(\verb+#f+, \verb+#t+)$ with
- common ground \verb=change= is dispreferred, and this is achieved due to the low prior probability of the common ground \verb=change=.
+ listener's marginal distribution over worlds is shown in Figure~\ref{fig:RSA_CGprior}.
+We can see that this model predicts that $(F, T)$ is very unlikely,
+ and $(T, T)$ has the same probability as $(F, F)$. 
+Although this still does not capture projection because $(T, T)$ is predicted to be
+ as likely as $(F, F)$, the model correctly predicts that $(F, T)$ is unlikely. 
+Therefore we have made some progress.
 
-We note that the above derivation of the common ground prior is certainly
- over-simplified, but the qualitative prediction really only depends on the 
- assumption that not all common grounds are equally likely \emph{a priori}, and 
- in particular \verb=change= is a fairly unusual common ground and 
+To understand how a prior derived from the notion of a common ground 
+ (henceforth CG prior) improves the model and what the remaining problem is, 
+ we plot the pragmatic listener's joint distribution of world and context set in
+ Figure~\ref{fig:prior}. 
+
+With a uniform prior, the pragmatic listener has 3 most likely outcomes: 
+ world $(T, T)$ with context set \verb=+past=, world $(F, F)$ with context set \verb=-now=, and world $(F, T)$ with context set \verb=change= (this last outcome
+ is slightly less likely than the first two), as shown in Figure~\ref{fig:joint-uniform}.
+This is why the marginal distribution over worlds is almost uniform over 
+ $(T, T)$, $(F, F)$, and $(F, T)$.
+In contrast, with a CG prior, while world $(T, T)$ with context set \verb=+past=
+ and world $(F, F)$ with context set \verb=-now= are still the most likely outcomes,
+ world $(F, T)$ with context set \verb=change= is no longer a likely outcome, 
+ as shown in Figure~\ref{fig:joint-CGprior}.
+World $(F, T)$ with context set \verb=change= is now dispreferred because 
+ its context set \verb=change= has a very low prior since it is not the result 
+ of taking observations about the past or now for granted.
+This is why the world $(F, T)$ is no longer likely in the marginal distribution
+ over worlds.
+
+We acknowledge that the above CG prior is certainly over-simplified, 
+ but the qualitative prediction really only depends on the 
+ assumption that not all common sets are equally likely \emph{a priori}, and 
+ in particular \verb=change= is a fairly unusual context set and 
  should be assigned a low prior probability.
 This assumption seems intuitively plausible, and as long as it is satisfied, 
- there could be many alternative ways to motivate a different common ground prior
- without affecting the model's crucial prediction.
+ there could be many alternative ways to motivate a more realistic prior over 
+ context sets without affecting the model's crucial prediction.
  
-However, we can see that the world $(\verb+#f+, \verb+#f+)$ 
- with common ground \verb=-now= 
- is still one of the most likely outcomes in Figure~\ref{fig:joint-CGprior}, and the marginal
- probability of $(\verb+#f+, \verb+#f+)$ is the same as $(\verb+#t+, \verb+#t+)$ in Figure~\ref{fig:RSA_CGprior}.
-This is not desirable, but is totally expected from the model: the common ground prior for \verb=-now= is the same as 
- \verb=+past=.
-Therefore, we need another way to explain why $(\verb+#f+, \verb+#f+)$ 
- with common ground \verb=-now= is empirically dispreferred.
+On the other hand, we can see that world $(F, F)$ with common ground \verb=-now= 
+ is still one of the most likely outcomes in Figure~\ref{fig:joint-CGprior}, and
+ hence the marginal probability of $(F, F)$ is the same as $(T, T)$ in Figure~\ref{fig:RSA_CGprior}.
+This is not desirable, but is totally expected from the model: 
+ the prior for context set \verb=-now= is the same as for context set \verb=+past=. 
+Therefore, to fully capture projective behavior, we need to further
+ explain why $(F, F)$ with context set \verb=-now= is dispreferred.
 
 
 \ 
@@ -369,8 +387,9 @@ So far, we have been assuming that the QUD is maximal, i.e., the utterance
  ``John did not stop smoking'' is chosen to address the question of
  whether John smoked in the past and whether John smokes now.
 For this QUD, the RSA model with common ground prior predicts a tie between 
- $(\verb+#t+, \verb+#t+)$ with common ground \verb=+past= and
- $(\verb+#f+, \verb+#f+)$ with common ground \verb=-now=.
+ $(T, T)$ with context set \verb=+past= and
+ $(F, F)$ with context set \verb=-now=.
+ 
 The maximal QUD is commonly assumed in applications of RSA models, but 
  in this case there are good reasons to consider non-maximal QUDs.
 Empirically, as noted in the beginning, projection is sensitive to the QUD.
@@ -383,25 +402,28 @@ In our working example, Bob explicitly asked about whether John smokes,
 When we use the previous RSA model with the common ground prior, but  
  replace QUD$_\textrm{max}$ with QUD$_\textrm{now}$ (summarized in the 
  last column of Table~\ref{tab:models}), the pragmatic listener's marginal probability over worlds is shown in Figure~\ref{fig:RSA_QUDnow} and the joint
- distribution of world and common ground is in Figure~\ref{fig:joint-QUDnow}.
-We can see that $(\verb+#t+, \verb+#t+)$ with common ground \verb=+past= is 
- the only most likely outcome, and the world $(\verb+#t+, \verb+#t+)$ is the 
- single most likely world (and its probability increases with a higher $\alpha$).
+ distribution of world and context set is in Figure~\ref{fig:joint-QUDnow}.
+We can see from Figure~\ref{fig:joint-QUDnow} that $(T, T)$ with context set
+ \verb=+past= is 
+ the only most likely outcome, and the world $(T, T)$ is the 
+ only most likely world (and its probability increases with a higher $\alpha$).
 This is exactly the projection pattern we aim to capture.
 
 To understand why we obtain this result, we note that 
- when the QUD is QUD$_\textrm{now}$, $(\verb+#f+, \verb+#f+)$ with common ground
- \verb=-now= is dispreferred because the common ground \verb=-now= already entails 
+ when the QUD is QUD$_\textrm{now}$, $(F, F)$ with context set
+ \verb=-now= is dispreferred because the context set \verb=-now= already entails 
  the answer to the QUD. 
+That is, it is already known from the context set \verb=-now= that John does not 
+ smoke now.
 This means that the speaker would be maximally informative even if he says nothing.
 As a result, the speaker would be unlikely to say ``John did not stop smoking'' 
- when the common ground is \verb=-now=, and the pragmatic listener could therefore
- infer that the common ground \verb=-now= is unlikely, which means that 
- $(\verb+#t+, \verb+#t+)$ with common ground \verb=+past= is the only winner.
+ when the context set is \verb=-now=, and the pragmatic listener could therefore
+ infer that the context set \verb=-now= is unlikely, which means that 
+ $(T, T)$ with context set \verb=+past= is the only winner.
 
 %The model's prediction changes when we use a different QUD. 
 %When the QUD is whether John smoked in the past, the model predicts that 
-% the listener will infer that world $(\verb+#f+, \verb+#f+)$ with common
+% the listener will infer that world $(F, F)$ with common
 % ground \verb=-now= is most likely, as shown in Fig.~\ref{fig:joint-QUDpast}.
 %This means that John never smokes and the speaker takes for granted that 
 % John does not smoke now.
@@ -412,7 +434,7 @@ As a result, the speaker would be unlikely to say ``John did not stop smoking''
 Therefore the current model correctly predicts the projective behavior for 
  ``John did not stop smoking'' in the example scenario, where the QUD is explicitly
  given by Bob's question. 
-Assuming that people generally care more about information concerning now than 
+Assuming that people generally care about information concerning now rather than 
  the past, i.e., the default or most salient QUD is QUD$_\text{now}$,
 the model predicts that the preferred projective content of 
  ``John did not stop smoking'' without explicit QUD is that 
