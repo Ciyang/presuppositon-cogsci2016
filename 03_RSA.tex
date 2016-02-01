@@ -88,7 +88,7 @@ L_0(Q(w) \mid u, Q) = \Pr(Q(w) \mid w \in \intp{u}) \label{eq:literal-noCG}
 \begin{table*}
 \centering
 \begin{tabular}{c|c|c|c|c}
-         & Standard (no CG + QUD$_\text{max}$ ) & Uniform CG + QUD$_\text{max}$ & CG prior + QUD$_\text{max}$ & CG prior + QUD$_\text{now}$ \\ \hline 
+         & Standard (no CG + QUD$_\text{max}$ ) & Uniform CS + QUD$_\text{max}$ & CG prior + QUD$_\text{max}$ & CG prior + QUD$_\text{now}$ \\ \hline 
 literal  & $L_0(Q(w) \mid u, Q) = \Pr(Q(w) \mid w \in \intp{u})$ & 
 \multicolumn{3}{c}{$L_0(Q(w) \mid u, C, Q) = \Pr(Q(w) \mid w \in \intp{u} \cap C)$} \\
 speaker  & $S(u | w, Q) \propto \Pr(u) \cdot L_0(Q(w) \mid u, Q)^\alpha $ & \multicolumn{3}{c}{$S(u | w, C, Q) \propto \Pr(u) \cdot L_0(Q(w) \mid u, C, Q)^\alpha$} \\
@@ -168,10 +168,10 @@ The same holds for the other two worlds $(F, T)$ and $(F,
 \begin{figure*}
  \centering
  \subfigure[Uniform CS + QUD$_\text{max}$]{\label{fig:joint-uniform}
-  \includegraphics[scale=0.26]{figs/alpha6uniformCG_QUDmax.png}} 
+  \includegraphics[scale=0.48]{figs/joint_uniformCG_QUDmax.pdf}} 
   \hspace{5pt}
  \subfigure[CG prior + QUD$_\text{max}$]{\label{fig:joint-CGprior}
- \includegraphics[scale=0.26]{figs/alpha6CGprior_QUDmax.png}} 
+ \includegraphics[scale=0.48]{figs/joint_CGprior_QUDmax.pdf}} 
 % \hspace{5pt}
 %  \subfigure[CG prior + QUD$_\text{now}$]{\label{fig:joint-QUDnow}
 %  \includegraphics[scale=0.26]{figs/alpha6CGprior_QUDnow.png}}%alpha6cost1eqllhcg
@@ -379,7 +379,7 @@ Therefore, to fully capture projective behavior, we need to further
 \noindent\textbf{Non-maximal QUDs}
 
 \begin{figure}
- \includegraphics[scale=0.26]{figs/alpha6CGprior_QUDnow.png}%alpha6cost1eqllhcg
+ \includegraphics[scale=0.48]{figs/joint_CGprior_QUDnow.pdf}
  \caption{Pragmatic listener after hearing ``John did not stop smoking,'' with $\alpha=6$, CG prior + QUD$_\text{now}$\label{fig:joint-QUDnow}}
 \end{figure}
 
