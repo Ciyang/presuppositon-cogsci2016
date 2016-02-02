@@ -17,6 +17,7 @@ The prior probability of an utterance depends on the number of content words
 The shorter an utterance, the higher its prior probability is, as defined in 
  (\ref{eq:utterance-prior}).
 
+\vspace{-6pt}
 \begin{equation}
 \Pr(u) \propto 2^{-\#\textrm{content-words}(u)}\label{eq:utterance-prior}
 \end{equation}
@@ -81,25 +82,27 @@ In the standard RSA model (augmented with QUD as in \citeA{GoodmanLassiter2015-C
 In this paper we always assume that all worlds are equally likely \emph{a priori}, 
  i.e. $\Pr(w)=1/4$ for each $w$.
 
+\vspace{-6pt}
 \begin{equation}
-L_0(Q(w) \mid u, Q) = \Pr(Q(w) \mid w \in \intp{u}) \label{eq:literal-noCG}
+L_0(Q(w) \mid u, Q) \propto  \sum_{w'\in \intp{u}} \delta_{Q(w)=Q(w')} \cdot \Pr(w')  \label{eq:literal-noCG}
 \end{equation}
- 
- \ndg{this notation isn't the best: the distribution over Q(w) isn't fully defined and the impact of literal meaning is better specified by a delta function.
- it's cleaner to handle the QUD in the speaker.i'd do it like: 
- $P_{L_0}(w \mid u) \propto \delta_{w\in \intp{u}}$ 
- and $P_{S}(u\mid w,Q) \propto P(u)\sum_{Q(w)=Q(w')}P_{L_0}(w' \mid u)$.
- i'm not going to make this change, since it affects a lot. y'all can if you want, or we can do it in the post-submit revision...}
+
+% \ndg{this notation isn't the best: the distribution over Q(w) isn't fully defined and the impact of literal meaning is better specified by a delta function.
+% it's cleaner to handle the QUD in the speaker.i'd do it like: 
+% $P_{L_0}(w \mid u) \propto \delta_{w\in \intp{u}}$ 
+% and $P_{S}(u\mid w,Q) \propto P(u)\sum_{Q(w)=Q(w')}P_{L_0}(w' \mid u)$.
+% i'm not going to make this change, since it affects a lot. y'all can if you want, or we can do it in the post-submit revision...}
  
 \begin{table*}
 \centering
 \begin{tabular}{c|c|c|c|c}
          & Standard (no CG + QUD$_\text{max}$ ) & Uniform CS + QUD$_\text{max}$ & CG prior + QUD$_\text{max}$ & CG prior + QUD$_\text{now}$ \\ \hline 
-literal  & $L_0(Q(w) \mid u, Q) = \Pr(Q(w) \mid w \in \intp{u})$ & 
-\multicolumn{3}{c}{$L_0(Q(w) \mid u, C, Q) = \Pr(Q(w) \mid w \in \intp{u} \cap C)$} \\
+literal  & $L_0(Q(w) \mid u, Q) \propto  \sum_{w'\in \intp{u}} \delta_{Q(w)=Q(w')} \cdot \Pr(w') $ & 
+\multicolumn{3}{c}{$L_0(Q(w) \mid u, Q) \propto  \sum_{w'\in C\cap \intp{u}} \delta_{Q(w)=Q(w')} \cdot \Pr(w')$} \\
 speaker  & $S(u | w, Q) \propto \Pr(u) \cdot L_0(Q(w) \mid u, Q)^\alpha $ & \multicolumn{3}{c}{$S(u | w, C, Q) \propto \Pr(u) \cdot L_0(Q(w) \mid u, C, Q)^\alpha$} \\
 listener & $L(w \mid u, Q) \propto \Pr(w) \cdot S(u \mid w, Q)$ & \multicolumn{3}{c}{$L(w, C \mid u, Q) \propto \Pr(w) \cdot \Pr(C) \cdot S(u \mid w, C, Q)$} \\
-CG prior & -- & $\Pr(C) \propto 1$ & \multicolumn{2}{c}{$\Pr(C)=0.95\cdot\Pr(C=\cap\text{CG}_\text{Obs})+0.05\cdot 1/15$} \\
+CG prior & -- & $\Pr(C) \propto 1$ & \multicolumn{2}{c}{$\Pr(C) \propto \sum_{CG\subseteq\text{Obs}} P(CG) \cdot \delta_{C=\cap CG}$}\\
+%\Pr(C)=0.95\cdot\Pr(C=\cap\text{CG}_\text{Obs})+0.05\cdot 1/15$} \\
 QUD      & $\text{QUD}_\text{max}(w)=w$ & $\text{QUD}_\text{max}(w)=w$ & $\text{QUD}_\text{max}(w)=w$ & $\text{QUD}_\text{now}((x,y))=y$\\
 %QUD      & \multicolumn{3}{c}{$\text{QUD}_\text{max}(w)=w$} & $\text{QUD}_\text{now}((x,y))=y$\\
 \hline
@@ -120,15 +123,18 @@ QUD      & $\text{QUD}_\text{max}(w)=w$ & $\text{QUD}_\text{max}(w)=w$ & $\text{
  \caption{Pragmatic listener after hearing ``John did not stop smoking'' for each model, with $\alpha=6$ }
 \end{figure*}
 
-For example, if the relevant QUD is maximal (``QUD$_\textrm{max}$'', asking for a complete specification of the state of the world), the literal listener will rule out world
- $(T, F)$, and returns the remaining 3 worlds with equal probability.
+Here $\delta$ subscripted with a statement is defined to be $1$ if the statement 
+ is true and $0$ otherwise.
+%(\ref{eq:literal-noCG}) specifies a distribution over possible answers to the QUD.
+For example, if $Q$ is QUD$_\textrm{max}$, which asks for a complete specification of the state of the world, after hearing "John didn't stop smoking," the literal listener will rule out world $(T, F)$, and return the remaining 3 worlds with equal probability.
 
 
 Given the actual world and the QUD, the probability of 
  the speaker's utterance $u$ depends on two factors: the utterance prior 
  and the probability that the utterance will make the literal listener 
  return the correct answer to the QUD, as in (\ref{eq:speaker-noCG}).
- 
+
+\vspace{-6pt} 
 \begin{equation}
 S(u | w, Q) \propto \Pr(u) \cdot L_0(Q(w) \mid u, Q)^\alpha 
 \label{eq:speaker-noCG}
@@ -144,6 +150,7 @@ In this paper we set $\alpha=6$, but the qualitative predictions do not hinge on
 
 The pragmatic listener, given the QUD, infers the actual world given the speaker's utterance, using Bayes' rule (\ref{eq:listener-noCG}).
 
+\vspace{-6pt} 
 \begin{equation}
 L(w \mid u, Q) \propto \Pr(w) \cdot S(u \mid w, Q) \label{eq:listener-noCG}
 \end{equation}
@@ -198,7 +205,7 @@ These context sets are intuitively named.
 For example, \verb=+past= is the context set
  that contains $(T, T)$ and $(T, F)$,
 \verb=+past+now= contains only $(T, T)$,
-$\sim$\verb=+past+now= contains all the worlds except $(T, T)$, 
+$\sim$\verb=+past+now= contains all the worlds except $(T, T)$ ($\sim A$ is defined to be $U-A$, i.e., $A$'s complement), 
 and \verb=change= is the context set that contains $(T, F)$ 
  and $(F, T)$.
 
@@ -207,8 +214,9 @@ A literal listener, given an utterance, the current context set and QUD,
  the context set, and returns the value of the QUD in that world, as in  
  (\ref{eq:literal-CG}).
 
+\vspace{-6pt}
 \begin{equation}
-L_0(Q(w) \mid u, C, Q) = \Pr(Q(w) \mid w \in \intp{u} \cap C) \label{eq:literal-CG}
+L_0(Q(w) \mid u, Q) \propto  \sum_{w'\in C\cap \intp{u}} \delta_{Q(w)=Q(w')} \cdot \Pr(w') \label{eq:literal-CG}
 \end{equation}
 
 For example, given context set \verb=+past= and QUD$_\text{max}$, 
@@ -223,7 +231,8 @@ We can see from this example that an utterance that is under-informative
 
 The new speaker model is almost the same as (\ref{eq:speaker-noCG}), except that 
  it is relativized to the current context set, as in (\ref{eq:speaker-CG}).
- 
+
+\vspace{-6pt}
 \begin{equation}
 S(u | w, C, Q) \propto \Pr(u) \cdot L_0(Q(w) \mid u, C, Q)^\alpha \label{eq:speaker-CG}
 \end{equation}
@@ -231,6 +240,7 @@ S(u | w, C, Q) \propto \Pr(u) \cdot L_0(Q(w) \mid u, C, Q)^\alpha \label{eq:spea
 Finally, given an utterance and the QUD, the pragmatic listener now jointly infers 
  the real world and the context set the speaker assumes when she produces the utterance. 
 
+\vspace{-6pt} 
 \begin{equation}
 L(w, C \mid u, Q) \propto \Pr(w) \cdot \Pr(C) \cdot S(u \mid w, C, Q)
 \end{equation}
@@ -311,63 +321,63 @@ The second possibility makes use of the notion of a \emph{common ground} (\emph{
  in the pragmatic approach to derive a prior over context sets
  \cite{Stalnaker1974:Pragmatic-Presuppositions}.
 Intuitively, a common ground represents everything that is taken for granted for conversational purposes.
-Formally it is a a set of propositions (sets of
-  worlds) all of which are taken for granted. The context set $C$, as defined above, can be thought of as the the conjunction of all of the propositions that are being taken for granted:
-$$
-C = \bigcap \mathit{CG}
-$$ 
-In our example scenario, Alice (the speaker) could reasonably take for granted certain propositions representing plausible observations about John's smoking habits --- whether he smoked in the past, and whether he does not. 
-The CG prior is built around the assumption that each of these observations is equally likely \emph{a priori}. For concreteness, we assign each observation probability $.4$.
+Formally it is a set of propositions (a proposition is a set of
+  worlds) all of which are taken for granted. The context set $C$, as defined above, can be thought of as the conjunction of all of the propositions that are being taken for granted: $C = \bigcap \mathit{CG}$.
+  
+In our example scenario, Alice (the speaker) could reasonably take for granted certain propositions representing plausible observations about John's smoking habits --- whether he smoked in the past, and whether he does now.
+Therefore, assuming that the propositions in the common ground come from 
+ observations about John's past and present smoking habits, 
+ we can use (\ref{eq:CGprior}) to naturally define a prior over context sets (henceforth the CG prior).
+
 \begin{equation}
-P(C) \propto  P(\text{obs}) \times \delta_{C \Rightarrow \text{obs}}
+\Pr(C) \propto \sum_{CG\subseteq\text{Obs}} P(CG) \cdot \delta_{C=\cap CG}
+%\Pr(C) \propto \sum_w \Pr(w) \cdot\sum_{CG\subseteq \text{Obs(w)}} P(CG) \cdot \delta_{C=\cap CG}
 %\Pr(C)=0.95\cdot\Pr(C=\cap\text{CG}_\text{Obs})+0.05\cdot 1/15 
 \label{eq:CGprior}
 \end{equation}
-$\delta_{C \Rightarrow \text{obs}}$ is a delta function returning 1 for context sets which entail the observation, and 0 for all others.
-Our prior is generated by adding a small amount of noise to this model, so that every non-empty $C$ has nonzero prior probability. This model assigns low prior probability to the context sets that cannot be built up via Boolean combinations of these natural observations. One example of a context set receiving low prior probability in this model is\verb=change=, the rather complex assumption that John has \emph{either} switched from smoking to not, \emph{or} switched from not smoking to smoking --- but we do not know which. In contrast, context sets such as \emph{John used to smoke} and \emph{John did not smoke and does not smoke now} receive higher probability because they correspond to observations that the speaker could plausibly have made.  
+  
+Concretely, we assume that each of the observations enters the common ground
+ independently, with probability $.4$ (meaning that the speaker does not tend to 
+ take things for granted).
+In addition, we add a small amount (5\%) of noise to (\ref{eq:CGprior}), so that every non-empty $C$ has a nonzero prior probability. This model assigns low prior probability to those context sets that cannot be built up via conjunctions of natural observations. One example of such a context set is \verb=change=, the rather complex assumption that John has \emph{either} switched from smoking to not, \emph{or} switched from not smoking to smoking --- but we do not know which. In contrast, context sets such as \verb|+past| (i.e., taking for granted that John used to smoke) and \verb|-past-now| (i.e., John did not smoke and does not smoke now) receive higher probabilities because they correspond to observations that the speaker could plausibly have made.  
 
 %\ndg{i think this exposition is the right idea. (though i wonder how useful it is to have both context and CG? i like context sets...) the exposition it could be crystalized just a bit by being clearer that: the things that are likely to be in common ground are the knowledge states it is likely for the speaker to have; knowledge usually follows from observations; in our domain likely observations are observations at each time. this in particular leads to disjunctive knowledge states being unlikely.
 %also, the notation $Pr(C=\cap\text{CG}_\text{Obs})$ doesn't really specify very well: $P_S(C|obs) \propto \delta_{C\in obs} P(C)$ by Bayes rule...?}
 
-Using the above notion of a common ground to derive the prior over context sets
- (summarized in the third column of Table~\ref{tab:models}), the pragmatic
+Using the CG prior (the model is summarized in the third column of Table~\ref{tab:models}), the pragmatic
  listener's marginal distribution over worlds is shown in Figure~\ref{fig:RSA_CGprior}.
-We can see that this model predicts that $(F, T)$ is very unlikely,
- and $(T, T)$ has the same probability as $(F, F)$. 
-Although this still does not capture projection because $(T, T)$ is predicted to be
+We can see that this model predicts that world $(F, T)$ is very unlikely,
+ and world $(T, T)$ has the same probability as world $(F, F)$. 
+Although it still does not capture projection because $(T, T)$ is predicted to be
  as likely as $(F, F)$, the model correctly predicts that $(F, T)$ is unlikely. 
 Therefore we have made some progress.
 
-To understand how a prior derived from the notion of a common ground 
- (henceforth CG prior) improves the model and what the remaining problem is, 
- we plot the pragmatic listener's joint distribution of world and context set in
- Figure~\ref{fig:prior}. 
+To better understand how the CG prior improves the model and what the remaining
+ problem is, we plot the pragmatic listener's joint distribution of world and 
+ context set in Figure~\ref{fig:prior}. 
 
-With a uniform prior, the pragmatic listener has 3 most likely outcomes: 
+In Figure~\ref{fig:joint-uniform}, with a uniform prior 
+ over context sets, the pragmatic listener has 3 most likely outcomes: 
  world $(T, T)$ with context set \verb=+past=, world $(F, F)$ with context set \verb=-now=, and world $(F, T)$ with context set \verb=change= (this last outcome
- is slightly less likely than the first two), as shown in Figure~\ref{fig:joint-uniform}.
-This is why the marginal distribution over worlds is almost uniform over 
- $(T, T)$, $(F, F)$, and $(F, T)$.
-In contrast, with a CG prior, while world $(T, T)$ with context set \verb=+past=
- and world $(F, F)$ with context set \verb=-now= are still the most likely outcomes,
- world $(F, T)$ with context set \verb=change= is no longer a likely outcome, 
- as shown in Figure~\ref{fig:joint-CGprior}.
-World $(F, T)$ with context set \verb=change= is now dispreferred because 
- its context set \verb=change= has a very low prior since it is not the result 
- of taking observations about the past or now for granted.
-This is why the world $(F, T)$ is no longer likely in the marginal distribution
- over worlds.
-
-We acknowledge that the above CG prior is certainly over-simplified, 
- but the qualitative prediction really only depends on the 
- assumption that not all common sets are equally likely \emph{a priori}, and 
- in particular \verb=change= is a fairly unusual context set and 
- should be assigned a low prior probability.
-This assumption seems intuitively plausible, and as long as it is satisfied, 
- there could be many alternative ways to motivate a more realistic prior over 
- context sets without affecting the model's crucial prediction.
+ is slightly less likely than the first two).
+This is because in these outcomes, ``John did not stop smoking'' can fully identify
+ the world given the context set, and hence these outcomes best 
+ explain the speaker's utterance.
+As a result, the marginal distribution over worlds is almost uniform over 
+ the 3 worlds.
  
-On the other hand, we can see that world $(F, F)$ with common ground \verb=-now= 
+In contrast, in Figure~\ref{fig:joint-CGprior}, with the CG prior, 
+ world $(F, T)$ with context set \verb=change= is no longer a likely outcome, 
+ because as noted earlier, the context set \verb=change= is assigned a very low prior.
+This is why world $(F, T)$ is correctly predicted to be unlikely.
+Although the CG prior we introduce above is probably over-simplified, the crucial
+ assumption we need is just that not all context sets are equally likely \emph{a priori}, and in particular \verb=change= is a fairly unusual context set and 
+ should be assigned a low prior probability, which seems intuitively plausible.
+As long as this assumption is satisfied, 
+ there could be alternative ways to motivate a more realistic prior over 
+ context sets without affecting the model's qualitative prediction.
+ 
+Nevertheless, we can see that world $(F, F)$ with common ground \verb=-now= 
  is still one of the most likely outcomes in Figure~\ref{fig:joint-CGprior}, and
  hence the marginal probability of $(F, F)$ is the same as $(T, T)$ in Figure~\ref{fig:RSA_CGprior}.
 This is not desirable, but is totally expected from the model: 
@@ -375,7 +385,7 @@ This is not desirable, but is totally expected from the model:
 Therefore, to fully capture projective behavior, we need to further
  explain why $(F, F)$ with context set \verb=-now= is dispreferred.
 
-\ndg{last several paragraphs are kind of wordy.... compress partly while clarifying as requested above?}
+%\ndg{last several paragraphs are kind of wordy.... compress partly while clarifying as requested above?}
 
 \ 
 
@@ -401,7 +411,7 @@ Theoretically, there has been a lot of discussion in the previous literature
  relative to a QUD not necessarily maximal.
  
 In our running example, Bob explicitly asked about whether John smokes, 
- which means that the QUD is QUD$_\textrm{now}$ (i.e., ``Does John smoke?'').
+ which means that the QUD is presumably QUD$_\textrm{now}$ (i.e., ``Does John smoke?'').
 When we use the previous RSA model with the common ground prior, but  
  replace QUD$_\textrm{max}$ with QUD$_\textrm{now}$ (summarized in the 
  last column of Table~\ref{tab:models}), the pragmatic listener's marginal distribution over worlds is shown in Figure~\ref{fig:RSA_QUDnow} and the joint
