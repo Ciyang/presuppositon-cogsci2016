@@ -98,7 +98,7 @@ L_0(Q(w) \mid u, Q) \propto  \sum_{w'\in \intp{u}} \delta_{Q(w)=Q(w')} \cdot \Pr
 \begin{tabular}{c|c|c|c|c}
          & Standard (no CG + QUD$_\text{max}$ ) & Uniform CS + QUD$_\text{max}$ & CG prior + QUD$_\text{max}$ & CG prior + QUD$_\text{now}$ \\ \hline 
 literal  & $L_0(Q(w) \mid u, Q) \propto  \sum_{w'\in \intp{u}} \delta_{Q(w)=Q(w')} \cdot \Pr(w') $ & 
-\multicolumn{3}{c}{$L_0(Q(w) \mid u, Q) \propto  \sum_{w'\in C\cap \intp{u}} \delta_{Q(w)=Q(w')} \cdot \Pr(w')$} \\
+\multicolumn{3}{c}{$L_0(Q(w) \mid u, C, Q) \propto  \sum_{w'\in C\cap \intp{u}} \delta_{Q(w)=Q(w')} \cdot \Pr(w')$} \\
 speaker  & $S(u | w, Q) \propto \Pr(u) \cdot L_0(Q(w) \mid u, Q)^\alpha $ & \multicolumn{3}{c}{$S(u | w, C, Q) \propto \Pr(u) \cdot L_0(Q(w) \mid u, C, Q)^\alpha$} \\
 listener & $L(w \mid u, Q) \propto \Pr(w) \cdot S(u \mid w, Q)$ & \multicolumn{3}{c}{$L(w, C \mid u, Q) \propto \Pr(w) \cdot \Pr(C) \cdot S(u \mid w, C, Q)$} \\
 CG prior & -- & $\Pr(C) \propto 1$ & \multicolumn{2}{c}{$\Pr(C) \propto \sum_{CG\subseteq\text{Obs}} P(CG) \cdot \delta_{C=\cap CG}$}\\
@@ -216,7 +216,7 @@ A literal listener, given an utterance, the current context set and QUD,
 
 \vspace{-6pt}
 \begin{equation}
-L_0(Q(w) \mid u, Q) \propto  \sum_{w'\in C\cap \intp{u}} \delta_{Q(w)=Q(w')} \cdot \Pr(w') \label{eq:literal-CG}
+L_0(Q(w) \mid u, C, Q) \propto  \sum_{w'\in C\cap \intp{u}} \delta_{Q(w)=Q(w')} \cdot \Pr(w') \label{eq:literal-CG}
 \end{equation}
 
 For example, given context set \verb=+past= and QUD$_\text{max}$, 
