@@ -47,9 +47,11 @@ $u$ &  $\intp{$u$}$  \\ \hline
 ``John has always smoked'' & $\{(T, T)\}$ \\
 ``John stopped smoking'' & $\{(T, F)\}$ \\
 ``John started smoking'' & $\{(F, T)\}$ \\
-``John has never smoked'' & $\{(F, F)\}$ 
+``John has never smoked'' & $\{(F, F)\}$ \\ \hline
 \end{tabular}
+\vspace{-1ex}
 \caption{Positive utterances and their denotations \label{tab:pos-utt-denotations}}
+\vspace{-3ex}
 \end{table}
 
 
@@ -60,11 +62,11 @@ It takes a world and returns its second element, which answers whether
  John smokes now. 
 Another example is the maximal QUD$_\textrm{max}$, which is the identity function. 
 Intuitively, QUD$_\textrm{max}$ is asking which is the current world.
-It is maximal in the sense that knowing it's answer means knowing the answer to 
+It is maximal in the sense that knowing its answer means knowing the answer to 
  any QUD.
  
-The RSA model we propose to account for projective behavior has additional 
- components and assumptions to the standard version in the literature
+To account for projective behavior, we propose 
+ additional components and assumptions to the standard RSA model in the literature
  \cite{FrankGoodman2012:Predicting-Pragmatic-Reasoning-,GoodmanStuhlmuller2013:Knowledge-and-I,GoodmanLassiter2015-Chapter}.
 To better illustrate why each of them is necessary and how they contribute to 
  the model's prediction, we will present the model incrementally. 
@@ -108,6 +110,7 @@ QUD      & $\text{QUD}_\text{max}(w)=w$ & $\text{QUD}_\text{max}(w)=w$ & $\text{
 \hline
 \end{tabular}
 \caption{Specifications of four RSA models \label{tab:models}, with $\Pr(w)\propto1$ and $\Pr(u) \propto 2^{-\#\textrm{content-words}(u)}$ for all four models}
+\vspace{-2ex}
 \end{table*} 
  
 \begin{figure*}
@@ -190,11 +193,11 @@ The same holds for the other two worlds $(F, T)$ and $(F,
 \end{figure*}
 
 We have seen that one important reason that the standard RSA model fails to 
- capture the projective content of ``John stopped smoking'' is that its literal
+ capture the projective content of ``John did not stop smoking'' is that its literal
  meaning is under-informative when considered in the entire universe $U$.
 However, as discussed before, there can be information taken for granted by the
  speaker and the listener, i.e., the common ground, 
-and an utterance under-informative when considered in the entire universe $U$ may 
+and an utterance that is under-informative when considered in the entire universe $U$ may 
  nevertheless be informative when evaluated in the common ground.
 To formalize this observation, we now add common ground to the RSA model.
 
@@ -220,7 +223,7 @@ L_0(Q(w) \mid u, C, Q) \propto  \sum_{w'\in C\cap \intp{u}} \delta_{Q(w)=Q(w')} 
 \end{equation}
 
 For example, given context set \verb=+past= and QUD$_\text{max}$, 
- after hearing ``John stopped smoking,'' the literal listener will rule out 
+ after hearing ``John did not stop smoking,'' the literal listener will rule out 
  $(T, F)$ because of the utterance's literal meaning, and 
  $(F, T)$ and $(F, F)$ because 
  they are incompatible with the context set.
@@ -243,10 +246,11 @@ Finally, given an utterance and the QUD, the pragmatic listener now jointly infe
 \vspace{-6pt} 
 \begin{equation}
 L(w, C \mid u, Q) \propto \Pr(w) \cdot \Pr(C) \cdot S(u \mid w, C, Q)
+\label{eq:listener-CG}
 \end{equation}
 
 We need to specify a prior distribution $\Pr(C)$ 
- over context sets.
+ over context sets in (\ref{eq:listener-CG}).
 We consider two possibilities. 
 First, we consider a uniform distribution over all context sets, i.e., 
  $\Pr(C)\propto 1$.
@@ -322,7 +326,7 @@ The second possibility makes use of the notion of a \emph{common ground} (\emph{
  \cite{Stalnaker1974:Pragmatic-Presuppositions}.
 Intuitively, a common ground represents everything that is taken for granted for conversational purposes.
 Formally it is a set of propositions (a proposition is a set of
-  worlds) all of which are taken for granted. The context set $C$, as defined above, can be thought of as the conjunction of all of the propositions that are being taken for granted: $C = \bigcap \mathit{CG}$.
+  worlds), all of which are taken for granted. The context set $C$, as defined above, can be thought of as the conjunction of all of the propositions that are being taken for granted: $C = \bigcap \mathit{CG}$.
   
 In our example scenario, Alice (the speaker) could reasonably take for granted certain propositions representing plausible observations about John's smoking habits --- whether he smoked in the past, and whether he does now.
 Therefore, assuming that the propositions in the common ground come from 
@@ -389,13 +393,13 @@ Therefore, to fully capture projective behavior, we need to further
 
 \ 
 
-\noindent\textbf{Non-maximal QUDs}
-
 \begin{figure}
  \includegraphics[scale=0.4]{figs/joint_CGprior_QUDnow.pdf}
  \caption{Pragmatic listener after hearing ``John did not stop smoking,'' with $\alpha=6$, CG prior + QUD$_\text{now}$\label{fig:joint-QUDnow}}
+\vspace{-3ex}
 \end{figure}
 
+\noindent\textbf{Non-maximal QUDs} \quad
 So far, we have been assuming that the QUD is maximal, i.e., the utterance 
  ``John did not stop smoking'' is chosen to address the question of
  whether John smoked in the past and whether John smokes now.
@@ -444,41 +448,20 @@ As a result, the speaker would be unlikely to say ``John did not stop smoking''
 % is a rumor about John being a heavy smoker in the past, and the speaker uses 
 % ``John did not stop smoking'' to jokingly refute it.
 
-Therefore the current model correctly predicts the projective behavior for 
+Hence the current model correctly predicts the projective behavior for 
  ``John did not stop smoking'' in the example scenario, where the QUD is explicitly
  given by Bob's question. 
-Assuming that people generally care about information concerning now rather than 
+Assuming that people generally care about information about now rather than 
  the past, i.e., the default or most salient QUD is QUD$_\text{now}$,
 the model predicts that the preferred projective content of 
  ``John did not stop smoking'' without explicit QUD is that 
  John smoked in the past, which is also correct.
 
 %This completes the RSA model. In the next section we will further illustrate its predictions about the interaction between projection and QUD. 
-\paragraph{Other QUDs}
 
-\begin{figure*}
- \centering
-  \subfigure[QUD$_\text{max}$]{\label{fig:RSA_QUDmax}
-  \includegraphics[scale=0.23]{figs/CGprior.pdf}}
-  \subfigure[QUD$_\text{now}$]{\label{fig:RSA_QUDnow2}
-  \includegraphics[scale=0.23]{figs/QUDnow.pdf}}
-  \subfigure[QUD$_\text{past}$]{\label{fig:RSA_QUDpast}
-    \includegraphics[scale=0.23]{figs/QUDpast.pdf}}
-  \subfigure[QUD$_\text{change}$]{\label{fig:RSA_QUDchange}
-    \includegraphics[scale=0.23]{figs/QUDchange.pdf}}
-  
- \subfigure[QUD$_\text{always}$]{\label{fig:RSA_QUDalways}
- \includegraphics[scale=0.23]{figs/QUDalways.pdf}}
- \subfigure[QUD$_\text{stop}$]{\label{fig:RSA_QUDstop}
- \includegraphics[scale=0.23]{figs/QUDstop.pdf}}
- \subfigure[QUD$_\text{start}$]{\label{fig:RSA_QUDstart}
-   \includegraphics[scale=0.23]{figs/QUDstart.pdf}}
- \subfigure[QUD$_\text{never}$]{\label{fig:RSA_QUDnever}
-   \includegraphics[scale=0.23]{figs/QUDnever.pdf}}
- \caption{Pragmatic listener after hearing ``John did not stop smoking'' for different QUDs, with $\alpha=6$ and CG prior \label{fig:RSA_QUDs}}
-\end{figure*}
+\
 
-
+\noindent \textbf{Other QUDs} \quad 
 We have introduced a RSA model with common ground and shown its
  predictions for QUD$_\textrm{now}$ and QUD$_\textrm{max}$.
 The prediction is sensitive to the QUD---in Figure~\ref{fig:RSA_QUDs} we show predictions for eight different QUDs.
