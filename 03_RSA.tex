@@ -61,7 +61,7 @@ For example, QUD$_\textrm{now}$ is the question ``Does John smoke now?''
 It takes a world and returns its second element, which answers whether 
  John smokes now. 
 Another example is the maximal QUD$_\textrm{max}$, which is the identity function. 
-Intuitively, QUD$_\textrm{max}$ is asking which is the current world.
+Intuitively, QUD$_\textrm{max}$ is asking which is the actual world.
 It is maximal in the sense that knowing its answer means knowing the answer to 
  any QUD.
  
@@ -129,7 +129,7 @@ QUD      & $\text{QUD}_\text{max}(w)=w$ & $\text{QUD}_\text{max}(w)=w$ & $\text{
 Here $\delta$ subscripted with a statement is defined to be $1$ if the statement 
  is true and $0$ otherwise.
 %(\ref{eq:literal-noCG}) specifies a distribution over possible answers to the QUD.
-For example, if $Q$ is QUD$_\textrm{max}$, which asks for a complete specification of the state of the world, after hearing "John didn't stop smoking," the literal listener will rule out world $(T, F)$, and return the remaining 3 worlds with equal probability.
+For example, if $Q$ is QUD$_\textrm{max}$, which asks for a complete specification of the state of the world, after hearing ``John didn't stop smoking,'' the literal listener will rule out world $(T, F)$, and return the remaining 3 worlds with equal probability.
 
 
 Given the actual world and the QUD, the probability of 
@@ -146,7 +146,7 @@ S(u | w, Q) \propto \Pr(u) \cdot L_0(Q(w) \mid u, Q)^\alpha
 Here $\alpha$ is a rationality parameter controlling the extent to which 
  the speaker optimizes her utterance to induce the correct answer from the 
  literal listener. 
-When $\alpha \rightarrow \infty$, the speaker will choose utterances that 
+When $\alpha \rightarrow \infty$, the speaker will always choose utterances that 
  strictly maximize the probability of inducing the right answer.
 In this paper we set $\alpha=6$, but the qualitative predictions do not hinge on 
  this specific value.
