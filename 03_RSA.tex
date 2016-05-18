@@ -74,7 +74,7 @@ We will start with the standard RSA model, point out its problems, motivate
  a modification, explain the problem it addresses, review the remaining issues, 
  motivate another modification, and so on, until we reach the final model.
 
-\ 
+\vspace{1ex}
 
 \noindent\textbf{Standard RSA model}
 
@@ -109,6 +109,7 @@ QUD      & $\text{QUD}_\text{max}(w)=w$ & $\text{QUD}_\text{max}(w)=w$ & $\text{
 %QUD      & \multicolumn{3}{c}{$\text{QUD}_\text{max}(w)=w$} & $\text{QUD}_\text{now}((x,y))=y$\\
 \hline
 \end{tabular}
+\vspace{-1ex}
 \caption{Specifications of four RSA models \label{tab:models}, with $\Pr(w)\propto1$ and $\Pr(u) \propto 2^{-\#\textrm{content-words}(u)}$ for all four models}
 \vspace{-2ex}
 \end{table*} 
@@ -123,7 +124,9 @@ QUD      & $\text{QUD}_\text{max}(w)=w$ & $\text{QUD}_\text{max}(w)=w$ & $\text{
    \includegraphics[scale=0.23]{figs/CGprior.pdf}}
  \subfigure[CG prior + QUD$_\text{now}$]{\label{fig:RSA_QUDnow}
    \includegraphics[scale=0.23]{figs/QUDnow.pdf}}
+\vspace{-2ex}
  \caption{Pragmatic listener after hearing ``John did not stop smoking'' for each model, with $\alpha=6$ }
+\vspace{-2ex}
 \end{figure*}
 
 Here $\delta$ subscripted with a statement is defined to be $1$ if the statement 
@@ -137,12 +140,13 @@ Given the actual world and the QUD, the probability of
  and the probability that the utterance will make the literal listener 
  return the correct answer to the QUD, as in (\ref{eq:speaker-noCG}).
 
-\vspace{-6pt} 
+\vspace{-1.5ex} 
 \begin{equation}
 S(u | w, Q) \propto \Pr(u) \cdot L_0(Q(w) \mid u, Q)^\alpha 
 \label{eq:speaker-noCG}
 \end{equation}
 
+\vspace{-0.5ex} 
 Here $\alpha$ is a rationality parameter controlling the extent to which 
  the speaker optimizes her utterance to induce the correct answer from the 
  literal listener. 
@@ -153,10 +157,11 @@ In this paper we set $\alpha=6$, but the qualitative predictions do not hinge on
 
 The pragmatic listener, given the QUD, infers the actual world given the speaker's utterance, using Bayes' rule (\ref{eq:listener-noCG}).
 
-\vspace{-6pt} 
+\vspace{-2ex} 
 \begin{equation}
 L(w \mid u, Q) \propto \Pr(w) \cdot S(u \mid w, Q) \label{eq:listener-noCG}
 \end{equation}
+\vspace{-4ex} 
 
 The standard RSA model is summarized in the first column of Table~\ref{tab:models},
  and the predicted pragmatic listener's distribution over worlds is shown in Figure~\ref{fig:vanillaRSA}.
@@ -175,7 +180,7 @@ The same holds for the other two worlds $(F, T)$ and $(F,
  F)$ and therefore the pragmatic listener in the standard RSA model will 
  infer that the three worlds are equally likely.
  
-\ 
+\vspace{1ex}
 
 \noindent\textbf{RSA with common ground}
 
@@ -190,6 +195,7 @@ The same holds for the other two worlds $(F, T)$ and $(F,
 %  \subfigure[CG prior + QUD$_\text{now}$]{\label{fig:joint-QUDnow}
 %  \includegraphics[scale=0.26]{figs/alpha6CGprior_QUDnow.png}}%alpha6cost1eqllhcg
  \caption{Pragmatic listener after hearing ``John did not stop smoking,'' with $\alpha=6$\label{fig:prior}}
+\vspace{-2ex}
 \end{figure*}
 
 We have seen that one important reason that the standard RSA model fails to 
@@ -217,7 +223,7 @@ A literal listener, given an utterance, the current context set and QUD,
  the context set, and returns the value of the QUD in that world, as in  
  (\ref{eq:literal-CG}).
 
-\vspace{-6pt}
+\vspace{-3ex}
 \begin{equation}
 L_0(Q(w) \mid u, C, Q) \propto  \sum_{w'\in C\cap \intp{u}} \delta_{Q(w)=Q(w')} \cdot \Pr(w') \label{eq:literal-CG}
 \end{equation}
@@ -332,8 +338,9 @@ In our example scenario, Alice (the speaker) could reasonably take for granted c
 Therefore, assuming that the propositions in the common ground come from 
  observations about John's past and present smoking habits, 
  we can use (\ref{eq:CGprior}) to naturally define a prior over context sets (henceforth the CG prior).
-
+\vspace{-1ex}
 \begin{equation}
+\vspace{-1ex}
 \Pr(C) \propto \sum_{CG\subseteq\text{Obs}} P(CG) \cdot \delta_{C=\cap CG}
 %\Pr(C) \propto \sum_w \Pr(w) \cdot\sum_{CG\subseteq \text{Obs(w)}} P(CG) \cdot \delta_{C=\cap CG}
 %\Pr(C)=0.95\cdot\Pr(C=\cap\text{CG}_\text{Obs})+0.05\cdot 1/15 
@@ -389,9 +396,7 @@ This is not desirable, but is totally expected from the model:
 Therefore, to fully capture projective behavior, we need to further
  explain why $(F, F)$ with context set \verb=-now= is dispreferred.
 
-%\ndg{last several paragraphs are kind of wordy.... compress partly while clarifying as requested above?}
-
-\ 
+%\ndg{last several paragraphs are kind of wordy.... compress partly while clarifying as requested above?} 
 
 \begin{figure}
  \includegraphics[scale=0.4]{figs/joint_CGprior_QUDnow.pdf}
@@ -399,6 +404,7 @@ Therefore, to fully capture projective behavior, we need to further
 \vspace{-3ex}
 \end{figure}
 
+\vspace{1ex}
 \noindent\textbf{Non-maximal QUDs} \quad
 So far, we have been assuming that the QUD is maximal, i.e., the utterance 
  ``John did not stop smoking'' is chosen to address the question of
@@ -410,9 +416,10 @@ For this QUD, the RSA model with common ground prior predicts a tie between
 The maximal QUD is often assumed in applications of RSA models (though see \citeA{KaoEtAl2014-Cogsci}), but 
  in this case there are good reasons to consider non-maximal QUDs.
 Empirically, as noted in the beginning, projection is sensitive to the QUD.
-Theoretically, there has been a lot of discussion in the previous literature
- \cite{Beaver2010:Have-You-Noticed, SimonsEtAl2001:What-Projects-and-Why} on the relation between at-issueness and projection, where at-issueness is defined 
- relative to a QUD not necessarily maximal.
+Theoretically, there has been a lot of discussion in the previous literature on the relation between at-issueness and projection  \cite{Beaver2010:Have-You-Noticed, SimonsEtAl2001:What-Projects-and-Why}.
+Their notion of at-issueness roughly corresponds to QUDs in our model,
+ which may be non-maximal.
+
  
 In our running example, Bob explicitly asked about whether John smokes, 
  which means that the QUD is presumably QUD$_\textrm{now}$ (i.e., ``Does John smoke?'').
@@ -437,29 +444,23 @@ As a result, the speaker would be unlikely to say ``John did not stop smoking''
  when the context set is \verb=-now=, and the pragmatic listener could therefore
  infer that the context set \verb=-now= is unlikely, which means that 
  $(T, T)$ with context set \verb=+past= is the only winner.
-
-%The model's prediction changes when we use a different QUD. 
-%When the QUD is whether John smoked in the past, the model predicts that 
-% the listener will infer that world $(F, F)$ with common
-% ground \verb=-now= is most likely, as shown in Fig.~\ref{fig:joint-QUDpast}.
-%This means that John never smokes and the speaker takes for granted that 
-% John does not smoke now.
-%This type of projection might be accessible in a scenario where there
-% is a rumor about John being a heavy smoker in the past, and the speaker uses 
-% ``John did not stop smoking'' to jokingly refute it.
-
-Hence the current model correctly predicts the projective behavior for 
+ 
+Hence the current model predicts the projective behavior for 
  ``John did not stop smoking'' in the example scenario, where the QUD is explicitly
  given by Bob's question. 
 Assuming that people generally care about information about now rather than 
  the past, i.e., the default or most salient QUD is QUD$_\text{now}$,
 the model predicts that the preferred projective content of 
  ``John did not stop smoking'' without explicit QUD is that 
- John smoked in the past, which is also correct.
+ John smoked in the past.
+Note that our speaker model predicts that ``John did not stop smoking''
+ is very unlikely to be used to answer QUD$_\text{now}$, as there exist simpler utterances ``John smokes/does not smoke.'' 
+This explains the perceived weirdness of Alice's indirect answer to 
+ Bob's explicit question. 
 
 %This completes the RSA model. In the next section we will further illustrate its predictions about the interaction between projection and QUD. 
 
-\
+\vspace{1ex}
 
 \noindent \textbf{Other QUDs} \quad 
 We have introduced a RSA model with common ground and shown its
@@ -475,14 +476,37 @@ The prediction is sensitive to the QUD---in Figure~\ref{fig:RSA_QUDs} we show pr
 %The predictions of the RSA model for these QUDs are shown in
 % Figure~\ref{fig:RSA_QUDs}.
 In general, it seems that the model is making plausible predictions. 
-For example, when the QUD is whether John has always smoked, ``John did not stop smoking'' implies that John has always smoked (Figure~\ref{fig:RSA_QUDalways}). 
-When the QUD is whether John has never smoked, ``John did not stop smoking'' implies that John has never smoked (Figure~\ref{fig:RSA_QUDnever}). 
+The utterance ``John did not stop smoking'' implies that John has always smoked if the QUD is whether John has always smoked (Figure~\ref{fig:RSA_QUDalways}).%
+\footnote{Note that QUDs are just partitions and not presuppositional. We use, e.g.,
+ \emph{always} to describe the QUDs only as a mnemonic device. }
+It implies that John has never smoked when the QUD is whether John has never smoked (Figure~\ref{fig:RSA_QUDnever}). 
 When the QUD is about whether John stopped smoking (Figure~\ref{fig:RSA_QUDstop}) 
- or there is a change (Figure~\ref{fig:RSA_QUDchange}), after hearing
- ``John did not stop smoking,'' the pragmatic listener still believes that that John 
- smoked in the past is roughly equally likely as that John did not smoke in the past. 
- (Compare this to Geurts' example, described earlier.)
-Further experimental data will be needed to assess whether these predictions are borne out.
+ or there is a change (Figure~\ref{fig:RSA_QUDchange}), the listener will believe that John 
+ smoking in the past is about 50\% likely (recall Geurts' example described earlier).
+These results are compatible with Simons et al.'s generalization that only non-at-issue content projects.
+But further experimental data will be needed to assess whether they are borne out.
 
-
+\begin{figure*}[t]
+ \centering
+  \subfigure[QUD$_\text{max}$]{\label{fig:RSA_QUDmax}
+  \includegraphics[scale=0.23]{figs/CGprior.pdf}}
+  \subfigure[QUD$_\text{now}$]{\label{fig:RSA_QUDnow2}
+  \includegraphics[scale=0.23]{figs/QUDnow.pdf}}
+  \subfigure[QUD$_\text{past}$]{\label{fig:RSA_QUDpast}
+    \includegraphics[scale=0.23]{figs/QUDpast.pdf}}
+  \subfigure[QUD$_\text{change}$]{\label{fig:RSA_QUDchange}
+    \includegraphics[scale=0.23]{figs/QUDchange.pdf}}
+  
+ \subfigure[QUD$_\text{always}$]{\label{fig:RSA_QUDalways}
+ \includegraphics[scale=0.23]{figs/QUDalways.pdf}}
+ \subfigure[QUD$_\text{stop}$]{\label{fig:RSA_QUDstop}
+ \includegraphics[scale=0.23]{figs/QUDstop.pdf}}
+ \subfigure[QUD$_\text{start}$]{\label{fig:RSA_QUDstart}
+   \includegraphics[scale=0.23]{figs/QUDstart.pdf}}
+ \subfigure[QUD$_\text{never}$]{\label{fig:RSA_QUDnever}
+   \includegraphics[scale=0.23]{figs/QUDnever.pdf}}
+\vspace{-2ex}
+ \caption{Pragmatic listener after hearing ``John did not stop smoking'' for different QUDs, with $\alpha=6$ and CG prior \label{fig:RSA_QUDs}}
+\vspace{-2ex}
+\end{figure*}
 

@@ -118,7 +118,7 @@ Certain content of a linguistic construction can project when the construction i
  In this paper we build a probabilistic model of language understanding in which the listener 
   jointly infers the world state and what common ground the speaker has assumed. 
  We take change-of-state verbs as an example and model its projective content under negation. 
- Under certain assumptions, the model correctly predicts the projective behavior and its interaction with 
+ Under certain assumptions, the model predicts the projective behavior and its interaction with 
   the \emph{question under discussion} (QUD), without any special semantic treatment of projective content.
 
 \textbf{Keywords:} 
@@ -207,20 +207,23 @@ To illustrate the reasoning, let us expand the example scenario:
 Alice and Bob are talking about John, an old friend of Alice's who is visiting her. 
 Bob has never met John before so he knows nothing about him. 
 Bob asks Alice, ``Does John smoke?'' 
-Alice replies, ``John did not stop smoking.'' 
+Alice replies, ``John did not stop smoking.''%
+\footnote{Alice's answer is indirect and complex, and hence would be
+infelicitous without additional contextual justification. This is predicted by our model.} 
 Taken literally, Alice's utterance seems under-informative: it can be literally true, regardless of whether or not John smokes. 
-If Alice knows whether John smokes, is cooperative, and is able to directly address the question, she would not have said something under-informative.
+If Alice knows whether John smokes and is cooperative,
+ she would not have said something under-informative.
 So perhaps her answer is informative after all, but how?
 Maybe she has taken some additional information for granted, assuming that it is in 
  the \emph{common ground} with Bob.
 Indeed, if Alice took for granted that John smoked in the past, then, together with ``John did not stop smoking,'' this information would mean that John still smokes, which fully answers the question of whether John smokes now.
-In other words, assuming that Alice took for granted that John smoked in the past best explains how Alice could be cooperative and still choose this utterance.
+In other words, assuming that Alice took for granted that John smoked in the past best explains Alice's utterance.
 If Bob further assumes that if Alice took it for granted then it must be true, then he will arrive at the projected content: John used to smoke.
  
- 
-  There are many reasons why one might prefer such a pragmatic approach to projection to a 
- semantic one. 
-First, change-of-state verbs systematically show projective behavior. 
+There are different types of projective content \cite{TonhauserEtAl2013:Toward-a-Taxonomy-}.
+It is possible that they project for different reasons.
+For change-of-state verbs, there are several reasons why one might prefer a pragmatic approach to projection to a semantic one. 
+First, they systematically show projective behavior. 
 Therefore, a generalization would be missing if their projective contents are
  lexically-encoded properties that could vary arbitrarily from verb to verb. In contrast, a pragmatic approach could in principle explain why a class of verbs with a similar basic meaning would also have the same projection behavior.
 Second, projection interacts with the contextual question under discussion,
@@ -228,6 +231,9 @@ Second, projection interacts with the contextual question under discussion,
 Imagine that Bob asked Alice: ``I notice that John keeps chewing on his pencil. Did he recently stop smoking?''
 In this context Bob is not interested in whether John is currently a smoker, but in whether there was a change from smoking to non-smoking which could explain John's odd behavior. 
 As a result, if Alice were to answer ``no (it's just an nervous habit)'', Bob would not infer that John used to smoke. 
+Similarly, if a customer asks  whether an item on sale has been used by
+ anyone before, a reply ``it is not refurbished'' would imply that 
+ it is brand new.
 Third, projection is sensitive to prosodic focus: ``John did not \textbf{stop} smoking'' seems to suggest he never smoked.
 Yet a major obstacle to adopting the pragmatic approach has been the difficulty in formalizing the reasoning and showing that it emerges naturally from conversational principles.
  
@@ -236,9 +242,9 @@ We do so within the Rational Speech-Acts (RSA) framework  \cite{FrankGoodman2012
 approach to language understanding.
 We extend the previous models by allowing the listener to reason about the facts that the speaker took to be in common ground (along similar lines to \citeA{DegenEtAl2015-Cogsci}).
 We find that to account for the example scenario we must also make certain assumptions about which facts are plausible common ground and which question is under discussion.
-With these assumptions and extensions, the model correctly accounts for projection phenomena of change-of-state verbs under negation.
+With these assumptions and extensions, the model accounts for projection phenomena of change-of-state verbs under negation.
 It further predicts an interaction between projective behavior and the  
- \emph{question under discussion} (QUD) \cite{Roberts2012:Information-Structure}, adding a new direction for further experimental research to the growing body of literature
+ \emph{question under discussion} (QUD) \cite{Roberts2012:Information-Structure}, suggesting further experimental research to the growing body of literature
 \cite<e.g.,>{CumminsEtAl2013-SuB,Schwarz2015:Experimental-Perspectives-Presuppositions}
 %The rest of the paper is as follows. We describe a sequence of extensions to the standard RSA model that ultimately predict the correct pattern of projection. 
 %%pointing out each additional assumption needed and the motivation.
@@ -258,10 +264,9 @@ It further predicts an interaction between projective behavior and the
 \input{05_conclusion}
 
 
-\section{Acknowledgements}
-
-Funding information? Thanks Zachary Wilkins for discussions 
- (anybody else?)
+%\section{Acknowledgements}
+%
+%We thank Zachary Wilkins for discussion.
 
 
 \bibliographystyle{apacite}
